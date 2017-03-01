@@ -95,7 +95,7 @@
             // newProfile
             // 
             this.newProfile.Name = "newProfile";
-            this.newProfile.Size = new System.Drawing.Size(141, 30);
+            this.newProfile.Size = new System.Drawing.Size(211, 30);
             this.newProfile.Text = "New";
             this.newProfile.Click += new System.EventHandler(this.newProfile_Click);
             // 
@@ -105,7 +105,7 @@
             this.toolProfile0,
             this.toolProfile1});
             this.openProfile.Name = "openProfile";
-            this.openProfile.Size = new System.Drawing.Size(141, 30);
+            this.openProfile.Size = new System.Drawing.Size(211, 30);
             this.openProfile.Text = "Open";
             // 
             // toolProfile0

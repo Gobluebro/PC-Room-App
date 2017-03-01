@@ -23,14 +23,11 @@ namespace PC_Room_App
 
         private void Settings_Load(object sender, EventArgs e)
         {
-            
-        }
-
-        private void newProfile_Click(object sender, EventArgs e)
-        {
-            formNewProfile formCreateProfile = new formNewProfile();
-            formCreateProfile.Show();
-            Visible = false;
+            bool noProfile = true;
+            if (noProfile)
+            {
+                openProfile.Text = "No Profile";
+            }
         }
 
         private void btnEnter_Click(object sender, EventArgs e)
@@ -49,6 +46,15 @@ namespace PC_Room_App
                 //TODO change OW settings
             }
         }
+
+        #region button clicks
+        private void newProfile_Click(object sender, EventArgs e)
+        {
+            formNewProfile formCreateProfile = new formNewProfile();
+            formCreateProfile.Show();
+            Visible = false;
+        }
+
         //buttons function like checkboxs but I like the size of buttons better than regular checkboxes.
         //though I never checked if I could make checkboxes with images. oh well
         private void btnWOW_Click(object sender, EventArgs e)
@@ -78,5 +84,6 @@ namespace PC_Room_App
                 btnOW.BackColor = Color.White;
             }
         }
+        #endregion
     }
 }

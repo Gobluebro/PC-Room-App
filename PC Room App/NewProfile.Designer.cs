@@ -47,8 +47,11 @@
             this.txtAddons = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.grpboxOW = new System.Windows.Forms.GroupBox();
+            this.cbnOWLang = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.lblOWError = new System.Windows.Forms.Label();
+            this.lblWoWError = new System.Windows.Forms.Label();
+            this.lblNameError = new System.Windows.Forms.Label();
             this.grpboxWOW.SuspendLayout();
             this.grpboxOW.SuspendLayout();
             this.SuspendLayout();
@@ -56,7 +59,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(30, 40);
+            this.label1.Location = new System.Drawing.Point(30, 25);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(103, 20);
             this.label1.TabIndex = 0;
@@ -82,28 +85,32 @@
             // 
             // txtProfileName
             // 
-            this.txtProfileName.Location = new System.Drawing.Point(273, 40);
+            this.txtProfileName.Location = new System.Drawing.Point(273, 25);
             this.txtProfileName.Name = "txtProfileName";
             this.txtProfileName.Size = new System.Drawing.Size(279, 26);
             this.txtProfileName.TabIndex = 3;
             // 
             // txtWoWLoc
             // 
+            this.txtWoWLoc.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.txtWoWLoc.Location = new System.Drawing.Point(239, 25);
             this.txtWoWLoc.Name = "txtWoWLoc";
+            this.txtWoWLoc.ReadOnly = true;
             this.txtWoWLoc.Size = new System.Drawing.Size(279, 26);
             this.txtWoWLoc.TabIndex = 4;
             // 
             // txtOWLoc
             // 
+            this.txtOWLoc.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.txtOWLoc.Location = new System.Drawing.Point(239, 22);
             this.txtOWLoc.Name = "txtOWLoc";
+            this.txtOWLoc.ReadOnly = true;
             this.txtOWLoc.Size = new System.Drawing.Size(279, 26);
             this.txtOWLoc.TabIndex = 5;
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(34, 344);
+            this.btnSave.Location = new System.Drawing.Point(34, 373);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(174, 86);
             this.btnSave.TabIndex = 6;
@@ -113,7 +120,7 @@
             // 
             // btnExit
             // 
-            this.btnExit.Location = new System.Drawing.Point(378, 344);
+            this.btnExit.Location = new System.Drawing.Point(378, 372);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(174, 86);
             this.btnExit.TabIndex = 7;
@@ -146,7 +153,7 @@
             // chkWOW
             // 
             this.chkWOW.AutoSize = true;
-            this.chkWOW.Location = new System.Drawing.Point(273, 78);
+            this.chkWOW.Location = new System.Drawing.Point(273, 63);
             this.chkWOW.Name = "chkWOW";
             this.chkWOW.Size = new System.Drawing.Size(159, 24);
             this.chkWOW.TabIndex = 10;
@@ -157,7 +164,7 @@
             // chkOW
             // 
             this.chkOW.AutoSize = true;
-            this.chkOW.Location = new System.Drawing.Point(442, 78);
+            this.chkOW.Location = new System.Drawing.Point(442, 63);
             this.chkOW.Name = "chkOW";
             this.chkOW.Size = new System.Drawing.Size(110, 24);
             this.chkOW.TabIndex = 11;
@@ -173,9 +180,9 @@
             this.grpboxWOW.Controls.Add(this.label2);
             this.grpboxWOW.Controls.Add(this.txtWoWLoc);
             this.grpboxWOW.Controls.Add(this.btnBrowseWoW);
-            this.grpboxWOW.Location = new System.Drawing.Point(12, 108);
+            this.grpboxWOW.Location = new System.Drawing.Point(11, 91);
             this.grpboxWOW.Name = "grpboxWOW";
-            this.grpboxWOW.Size = new System.Drawing.Size(575, 97);
+            this.grpboxWOW.Size = new System.Drawing.Size(575, 100);
             this.grpboxWOW.TabIndex = 12;
             this.grpboxWOW.TabStop = false;
             this.grpboxWOW.Text = "WoW Information";
@@ -194,8 +201,10 @@
             // 
             // txtAddons
             // 
+            this.txtAddons.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.txtAddons.Location = new System.Drawing.Point(239, 57);
             this.txtAddons.Name = "txtAddons";
+            this.txtAddons.ReadOnly = true;
             this.txtAddons.Size = new System.Drawing.Size(279, 26);
             this.txtAddons.TabIndex = 10;
             // 
@@ -210,18 +219,29 @@
             // 
             // grpboxOW
             // 
-            this.grpboxOW.Controls.Add(this.comboBox1);
+            this.grpboxOW.Controls.Add(this.cbnOWLang);
             this.grpboxOW.Controls.Add(this.label5);
             this.grpboxOW.Controls.Add(this.btnBrowseOW);
             this.grpboxOW.Controls.Add(this.txtOWLoc);
             this.grpboxOW.Controls.Add(this.label3);
-            this.grpboxOW.Location = new System.Drawing.Point(12, 223);
+            this.grpboxOW.Location = new System.Drawing.Point(12, 197);
             this.grpboxOW.Name = "grpboxOW";
-            this.grpboxOW.Size = new System.Drawing.Size(575, 100);
+            this.grpboxOW.Size = new System.Drawing.Size(575, 97);
             this.grpboxOW.TabIndex = 13;
             this.grpboxOW.TabStop = false;
             this.grpboxOW.Text = "Overwatch Information";
             this.grpboxOW.Visible = false;
+            // 
+            // cbnOWLang
+            // 
+            this.cbnOWLang.FormattingEnabled = true;
+            this.cbnOWLang.Items.AddRange(new object[] {
+            "English",
+            "한국어"});
+            this.cbnOWLang.Location = new System.Drawing.Point(239, 54);
+            this.cbnOWLang.Name = "cbnOWLang";
+            this.cbnOWLang.Size = new System.Drawing.Size(279, 28);
+            this.cbnOWLang.TabIndex = 11;
             // 
             // label5
             // 
@@ -232,22 +252,47 @@
             this.label5.TabIndex = 10;
             this.label5.Text = "Language:";
             // 
-            // comboBox1
+            // lblOWError
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "English",
-            "한국어"});
-            this.comboBox1.Location = new System.Drawing.Point(239, 54);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(279, 28);
-            this.comboBox1.TabIndex = 11;
+            this.lblOWError.AutoSize = true;
+            this.lblOWError.ForeColor = System.Drawing.Color.Red;
+            this.lblOWError.Location = new System.Drawing.Point(164, 323);
+            this.lblOWError.Name = "lblOWError";
+            this.lblOWError.Size = new System.Drawing.Size(289, 20);
+            this.lblOWError.TabIndex = 12;
+            this.lblOWError.Text = "Please fill in every textbox for Overwatch";
+            this.lblOWError.Visible = false;
+            // 
+            // lblWoWError
+            // 
+            this.lblWoWError.AutoSize = true;
+            this.lblWoWError.ForeColor = System.Drawing.Color.Red;
+            this.lblWoWError.Location = new System.Drawing.Point(149, 301);
+            this.lblWoWError.Name = "lblWoWError";
+            this.lblWoWError.Size = new System.Drawing.Size(338, 20);
+            this.lblWoWError.TabIndex = 13;
+            this.lblWoWError.Text = "Please fill in every textbox for World of Warcraft";
+            this.lblWoWError.Visible = false;
+            // 
+            // lblNameError
+            // 
+            this.lblNameError.AutoSize = true;
+            this.lblNameError.ForeColor = System.Drawing.Color.Red;
+            this.lblNameError.Location = new System.Drawing.Point(211, 346);
+            this.lblNameError.Name = "lblNameError";
+            this.lblNameError.Size = new System.Drawing.Size(201, 20);
+            this.lblNameError.TabIndex = 14;
+            this.lblNameError.Text = "Please fill in a Profille Name";
+            this.lblNameError.Visible = false;
             // 
             // formNewProfile
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(589, 470);
+            this.Controls.Add(this.lblNameError);
+            this.Controls.Add(this.lblOWError);
+            this.Controls.Add(this.lblWoWError);
             this.Controls.Add(this.grpboxOW);
             this.Controls.Add(this.grpboxWOW);
             this.Controls.Add(this.chkOW);
@@ -261,6 +306,7 @@
             this.MinimumSize = new System.Drawing.Size(611, 526);
             this.Name = "formNewProfile";
             this.Text = "Create a New Profile";
+            this.Load += new System.EventHandler(this.formNewProfile_Load);
             this.grpboxWOW.ResumeLayout(false);
             this.grpboxWOW.PerformLayout();
             this.grpboxOW.ResumeLayout(false);
@@ -290,7 +336,10 @@
         private System.Windows.Forms.Button btnWOWAddonsLoc;
         private System.Windows.Forms.TextBox txtAddons;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cbnOWLang;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lblOWError;
+        private System.Windows.Forms.Label lblWoWError;
+        private System.Windows.Forms.Label lblNameError;
     }
 }

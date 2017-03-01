@@ -61,14 +61,34 @@ namespace PC_Room_App
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            //TODO: Save profile
-            if (chkOW.Checked)
+            if (!chkWOW.Checked && !chkOW.Checked)
             {
-
+                //because what's the point of just saving a profile with only a name
+                MessageBox.Show("Please check at least one checkbox");
             }
-            if (chkWOW.Checked)
+            else if (chkWOW.Checked && (txtWoWLoc.Text == "" || txtAddons.Text == ""){
+                //error checking if boxes are filled in for WoW
+                lblWoWError.Visible = true;
+            }
+            else if (chkOW.Checked && (txtOWLoc.Text == "" || cbnOWLang.SelectedText == ""))
             {
-
+                lblOWError.Visible = true;
+            }
+            else
+            {
+                Profile createdNewProfile = new Profile();
+                createdNewProfile.profileName = txtProfileName.Text;
+                //TODO: Save profile
+                if (chkWOW.Checked)
+                {
+                    createdNewProfile.getWoWLocation = txtWoWLoc.Text;
+                    createdNewProfile.getWoWAddonsLocation = txtAddons.Text;
+                }
+                if (chkOW.Checked)
+                {
+                    createdNewProfile.getOWLocation = txtOWLoc.Text;
+                    createdNewProfile.getOWLanguage = cbnOWLang.SelectedText;
+                }
             }
 
             FormChange();
@@ -111,6 +131,11 @@ namespace PC_Room_App
             {
                 grpboxOW.Visible = false;
             }
+        }
+
+        private void formNewProfile_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
