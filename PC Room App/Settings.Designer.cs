@@ -33,11 +33,9 @@
             this.btnWOW = new System.Windows.Forms.Button();
             this.btnOW = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.profileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.profileMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.newProfile = new System.Windows.Forms.ToolStripMenuItem();
             this.openProfile = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolProfile0 = new System.Windows.Forms.ToolStripTextBox();
-            this.toolProfile1 = new System.Windows.Forms.ToolStripTextBox();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fAQToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutDeveloperToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -75,7 +73,7 @@
             // 
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.profileToolStripMenuItem,
+            this.profileMenu,
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -83,14 +81,14 @@
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // profileToolStripMenuItem
+            // profileMenu
             // 
-            this.profileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.profileMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.newProfile,
             this.openProfile});
-            this.profileToolStripMenuItem.Name = "profileToolStripMenuItem";
-            this.profileToolStripMenuItem.Size = new System.Drawing.Size(74, 29);
-            this.profileToolStripMenuItem.Text = "Profile";
+            this.profileMenu.Name = "profileMenu";
+            this.profileMenu.Size = new System.Drawing.Size(74, 29);
+            this.profileMenu.Text = "Profile";
             // 
             // newProfile
             // 
@@ -101,24 +99,9 @@
             // 
             // openProfile
             // 
-            this.openProfile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolProfile0,
-            this.toolProfile1});
             this.openProfile.Name = "openProfile";
             this.openProfile.Size = new System.Drawing.Size(211, 30);
             this.openProfile.Text = "Open";
-            // 
-            // toolProfile0
-            // 
-            this.toolProfile0.Name = "toolProfile0";
-            this.toolProfile0.Size = new System.Drawing.Size(100, 31);
-            this.toolProfile0.Text = "Profile 1";
-            // 
-            // toolProfile1
-            // 
-            this.toolProfile1.Name = "toolProfile1";
-            this.toolProfile1.Size = new System.Drawing.Size(100, 31);
-            this.toolProfile1.Text = "Profile 2";
             // 
             // helpToolStripMenuItem
             // 
@@ -202,12 +185,10 @@
         private System.Windows.Forms.Button btnWOW;
         private System.Windows.Forms.Button btnOW;
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem profileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem profileMenu;
         private System.Windows.Forms.ToolStripMenuItem newProfile;
         private System.Windows.Forms.ToolStripMenuItem openProfile;
         private System.Windows.Forms.Button btnEnter;
-        private System.Windows.Forms.ToolStripTextBox toolProfile0;
-        private System.Windows.Forms.ToolStripTextBox toolProfile1;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem fAQToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutDeveloperToolStripMenuItem;

@@ -99,17 +99,23 @@ namespace PC_Room_App
                     writer.WriteLine("Profile Name: " + txtProfileName.Text);
                     if (chkWOW.Checked)
                     {
-                        //createdNewProfile.WoWLocation = txtWoWLoc.Text;
-                        //createdNewProfile.WoWAddonsLocation = txtAddons.Text;
                         writer.WriteLine("WoW Path: " + txtWoWPath.Text);
                         writer.WriteLine("WoW Addons Path: " + txtAddonsPath.Text);
                     }
+                    else
+                    {
+                        writer.WriteLine("WoW Path: ");
+                        writer.WriteLine("WoW Addons Path: ");
+                    }
                     if (chkOW.Checked)
                     {
-                        //createdNewProfile.OWLocation = txtOWLoc.Text;
-                        //createdNewProfile.OWLanguage = cbnOWLang.SelectedText;
                         writer.WriteLine("Overwatch Path: " + txtOWPath.Text);
                         writer.WriteLine("Overwatch Language: " + cbnOWLang.Text);
+                    }
+                    else
+                    {
+                        writer.WriteLine("Overwatch Path: ");
+                        writer.WriteLine("Overwatch Language: ");
                     }
                     writer.WriteLine(";");
                 }
