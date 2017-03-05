@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace PC_Room_App
 {
-    public partial class formNewProfile : Form
+    public partial class formCreateNewProfile : Form
     {
         #region multiple calls methods
         private void FormChange()
@@ -27,7 +27,7 @@ namespace PC_Room_App
                 DialogResult result = folderBrowserDialog1.ShowDialog();
                 if (result == DialogResult.OK)
                 {
-                    txtWoWLoc.Text = folderBrowserDialog1.SelectedPath;
+                    txtWoWPath.Text = folderBrowserDialog1.SelectedPath;
                 }
             }
             else if(location == "AddOn")
@@ -35,7 +35,7 @@ namespace PC_Room_App
                 DialogResult result = folderBrowserDialog1.ShowDialog();
                 if (result == DialogResult.OK)
                 {
-                    txtAddons.Text = folderBrowserDialog1.SelectedPath;
+                    txtAddonsPath.Text = folderBrowserDialog1.SelectedPath;
                 }
             }
             else 
@@ -44,13 +44,13 @@ namespace PC_Room_App
                 DialogResult result = folderBrowserDialog1.ShowDialog();
                 if (result == DialogResult.OK)
                 {
-                    txtOWLoc.Text = folderBrowserDialog1.SelectedPath;
+                    txtOWPath.Text = folderBrowserDialog1.SelectedPath;
                 }
             }
         }
         #endregion
 
-        public formNewProfile()
+        public formCreateNewProfile()
         {
             InitializeComponent();
         }
@@ -73,14 +73,14 @@ namespace PC_Room_App
                 //because what's the point of just saving a profile with only a name
                 lblChkboxError.Visible = true;
             }
-            else if (chkWOW.Checked && (txtWoWLoc.Text == "" || txtAddons.Text == ""))
+            else if (chkWOW.Checked && (txtWoWPath.Text == "" || txtAddonsPath.Text == ""))
             {
                 //error checking if boxes are filled in for WoW
                 //hide the checkbox error since we obviously have a boxed checked
                 lblChkboxError.Visible = false;
                 lblWoWError.Visible = true;
             }
-            else if (chkOW.Checked && (txtOWLoc.Text == "" || cbnOWLang.SelectedText == ""))
+            else if (chkOW.Checked && (txtOWPath.Text == "" || cbnOWLang.Text == ""))
             {
                 //error checking if boxes are filled in for overwatch
                 //hide the checkbox error since we obviously have a boxed checked
@@ -90,10 +90,7 @@ namespace PC_Room_App
             #endregion
             else
             {
-                //since no errors create the profile
-                //Profile createdNewProfile = new Profile();
-                //createdNewProfile.profileName = txtProfileName.Text;
-                //TODO: Save profile to file
+                //originally wanted to save this to a new profile but I won't use it so it's not needed.
 
                 //the opens the cache file and the bool allows me to append to the file (false would be to overwrite)
                 //in the case of the first time creates the file, in the case of the second time it appends (thank you whoever wrote this nice constructor)
@@ -104,22 +101,20 @@ namespace PC_Room_App
                     {
                         //createdNewProfile.WoWLocation = txtWoWLoc.Text;
                         //createdNewProfile.WoWAddonsLocation = txtAddons.Text;
-                        writer.WriteLine("WoW Location: " + txtWoWLoc.Text);
-                        writer.WriteLine("WoW Addons Location: " + txtAddons.Text);
+                        writer.WriteLine("WoW Path: " + txtWoWPath.Text);
+                        writer.WriteLine("WoW Addons Path: " + txtAddonsPath.Text);
                     }
                     if (chkOW.Checked)
                     {
                         //createdNewProfile.OWLocation = txtOWLoc.Text;
                         //createdNewProfile.OWLanguage = cbnOWLang.SelectedText;
-                        writer.WriteLine("Overwatch Location: " + txtOWLoc.Text);
+                        writer.WriteLine("Overwatch Path: " + txtOWPath.Text);
                         writer.WriteLine("Overwatch Language: " + cbnOWLang.Text);
                     }
                     writer.WriteLine(";");
                 }
-                
+                FormChange();
             }
-
-            FormChange();
         }
 
         #region file system browse calls
@@ -161,9 +156,14 @@ namespace PC_Room_App
             }
         }
 
-        private void formNewProfile_Load(object sender, EventArgs e)
+        private void formCreateNewProfile_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void cbnOWLang_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //cbnOWLang.Text = cbnOWLang.selected
         }
     }
 }

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Reflection;
+using System.IO;
 
 namespace PC_Room_App
 {
@@ -17,12 +19,12 @@ namespace PC_Room_App
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-
-            bool existingProfile = false;
+            string cachePath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\Cache.txt";
+            bool existingProfile = File.Exists(cachePath);
             if (!existingProfile)
             {
                 MessageBox.Show("Please Create a Profile", "No Existing Profile.");
-                Application.Run(new formNewProfile());
+                Application.Run(new formCreateNewProfile());
             }
             else
             {

@@ -50,7 +50,7 @@ namespace PC_Room_App
         #region button clicks
         private void newProfile_Click(object sender, EventArgs e)
         {
-            formNewProfile formCreateProfile = new formNewProfile();
+            formCreateNewProfile formCreateProfile = new formCreateNewProfile();
             formCreateProfile.Show();
             Visible = false;
         }

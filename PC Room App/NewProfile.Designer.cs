@@ -1,6 +1,6 @@
 ﻿namespace PC_Room_App
 {
-    partial class formNewProfile
+    partial class formCreateNewProfile
     {
         /// <summary>
         /// Required designer variable.
@@ -28,13 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(formNewProfile));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(formCreateNewProfile));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.txtProfileName = new System.Windows.Forms.TextBox();
-            this.txtWoWLoc = new System.Windows.Forms.TextBox();
-            this.txtOWLoc = new System.Windows.Forms.TextBox();
+            this.txtWoWPath = new System.Windows.Forms.TextBox();
+            this.txtOWPath = new System.Windows.Forms.TextBox();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
             this.btnBrowseWoW = new System.Windows.Forms.Button();
@@ -44,7 +44,7 @@
             this.chkOW = new System.Windows.Forms.CheckBox();
             this.grpboxWOW = new System.Windows.Forms.GroupBox();
             this.btnWOWAddonsLoc = new System.Windows.Forms.Button();
-            this.txtAddons = new System.Windows.Forms.TextBox();
+            this.txtAddonsPath = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.grpboxOW = new System.Windows.Forms.GroupBox();
             this.cbnOWLang = new System.Windows.Forms.ComboBox();
@@ -69,20 +69,20 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(16, 28);
+            this.label2.Location = new System.Drawing.Point(44, 28);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(202, 20);
+            this.label2.Size = new System.Drawing.Size(174, 20);
             this.label2.TabIndex = 1;
-            this.label2.Text = "World of Warcraft Location:";
+            this.label2.Text = "World of Warcraft Path:";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(65, 23);
+            this.label3.Location = new System.Drawing.Point(92, 25);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(153, 20);
+            this.label3.Size = new System.Drawing.Size(125, 20);
             this.label3.TabIndex = 2;
-            this.label3.Text = "Overwatch Location:";
+            this.label3.Text = "Overwatch Path:";
             // 
             // txtProfileName
             // 
@@ -91,23 +91,23 @@
             this.txtProfileName.Size = new System.Drawing.Size(279, 26);
             this.txtProfileName.TabIndex = 3;
             // 
-            // txtWoWLoc
+            // txtWoWPath
             // 
-            this.txtWoWLoc.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.txtWoWLoc.Location = new System.Drawing.Point(239, 25);
-            this.txtWoWLoc.Name = "txtWoWLoc";
-            this.txtWoWLoc.ReadOnly = true;
-            this.txtWoWLoc.Size = new System.Drawing.Size(279, 26);
-            this.txtWoWLoc.TabIndex = 4;
+            this.txtWoWPath.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.txtWoWPath.Location = new System.Drawing.Point(239, 25);
+            this.txtWoWPath.Name = "txtWoWPath";
+            this.txtWoWPath.ReadOnly = true;
+            this.txtWoWPath.Size = new System.Drawing.Size(279, 26);
+            this.txtWoWPath.TabIndex = 4;
             // 
-            // txtOWLoc
+            // txtOWPath
             // 
-            this.txtOWLoc.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.txtOWLoc.Location = new System.Drawing.Point(239, 22);
-            this.txtOWLoc.Name = "txtOWLoc";
-            this.txtOWLoc.ReadOnly = true;
-            this.txtOWLoc.Size = new System.Drawing.Size(279, 26);
-            this.txtOWLoc.TabIndex = 5;
+            this.txtOWPath.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.txtOWPath.Location = new System.Drawing.Point(239, 22);
+            this.txtOWPath.Name = "txtOWPath";
+            this.txtOWPath.ReadOnly = true;
+            this.txtOWPath.Size = new System.Drawing.Size(279, 26);
+            this.txtOWPath.TabIndex = 5;
             // 
             // btnSave
             // 
@@ -176,10 +176,10 @@
             // grpboxWOW
             // 
             this.grpboxWOW.Controls.Add(this.btnWOWAddonsLoc);
-            this.grpboxWOW.Controls.Add(this.txtAddons);
+            this.grpboxWOW.Controls.Add(this.txtAddonsPath);
             this.grpboxWOW.Controls.Add(this.label4);
             this.grpboxWOW.Controls.Add(this.label2);
-            this.grpboxWOW.Controls.Add(this.txtWoWLoc);
+            this.grpboxWOW.Controls.Add(this.txtWoWPath);
             this.grpboxWOW.Controls.Add(this.btnBrowseWoW);
             this.grpboxWOW.Location = new System.Drawing.Point(11, 91);
             this.grpboxWOW.Name = "grpboxWOW";
@@ -200,30 +200,30 @@
             this.btnWOWAddonsLoc.UseVisualStyleBackColor = true;
             this.btnWOWAddonsLoc.Click += new System.EventHandler(this.btnWOWAddonsLoc_Click);
             // 
-            // txtAddons
+            // txtAddonsPath
             // 
-            this.txtAddons.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.txtAddons.Location = new System.Drawing.Point(239, 57);
-            this.txtAddons.Name = "txtAddons";
-            this.txtAddons.ReadOnly = true;
-            this.txtAddons.Size = new System.Drawing.Size(279, 26);
-            this.txtAddons.TabIndex = 10;
+            this.txtAddonsPath.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.txtAddonsPath.Location = new System.Drawing.Point(239, 57);
+            this.txtAddonsPath.Name = "txtAddonsPath";
+            this.txtAddonsPath.ReadOnly = true;
+            this.txtAddonsPath.Size = new System.Drawing.Size(279, 26);
+            this.txtAddonsPath.TabIndex = 10;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(85, 57);
+            this.label4.Location = new System.Drawing.Point(113, 57);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(133, 20);
+            this.label4.Size = new System.Drawing.Size(105, 20);
             this.label4.TabIndex = 9;
-            this.label4.Text = "Addons Location:";
+            this.label4.Text = "Addons Path:";
             // 
             // grpboxOW
             // 
             this.grpboxOW.Controls.Add(this.cbnOWLang);
             this.grpboxOW.Controls.Add(this.label5);
             this.grpboxOW.Controls.Add(this.btnBrowseOW);
-            this.grpboxOW.Controls.Add(this.txtOWLoc);
+            this.grpboxOW.Controls.Add(this.txtOWPath);
             this.grpboxOW.Controls.Add(this.label3);
             this.grpboxOW.Location = new System.Drawing.Point(12, 197);
             this.grpboxOW.Name = "grpboxOW";
@@ -243,11 +243,12 @@
             this.cbnOWLang.Name = "cbnOWLang";
             this.cbnOWLang.Size = new System.Drawing.Size(279, 28);
             this.cbnOWLang.TabIndex = 11;
+            this.cbnOWLang.SelectedIndexChanged += new System.EventHandler(this.cbnOWLang_SelectedIndexChanged);
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(133, 56);
+            this.label5.Location = new System.Drawing.Point(132, 54);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(85, 20);
             this.label5.TabIndex = 10;
@@ -297,7 +298,7 @@
             this.lblChkboxError.Text = "Please check at least one checkbox";
             this.lblChkboxError.Visible = false;
             // 
-            // formNewProfile
+            // formCreateNewProfile
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -317,9 +318,9 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximumSize = new System.Drawing.Size(611, 526);
             this.MinimumSize = new System.Drawing.Size(611, 526);
-            this.Name = "formNewProfile";
+            this.Name = "formCreateNewProfile";
             this.Text = "Create a New Profile";
-            this.Load += new System.EventHandler(this.formNewProfile_Load);
+            this.Load += new System.EventHandler(this.formCreateNewProfile_Load);
             this.grpboxWOW.ResumeLayout(false);
             this.grpboxWOW.PerformLayout();
             this.grpboxOW.ResumeLayout(false);
@@ -335,8 +336,8 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtProfileName;
-        private System.Windows.Forms.TextBox txtWoWLoc;
-        private System.Windows.Forms.TextBox txtOWLoc;
+        private System.Windows.Forms.TextBox txtWoWPath;
+        private System.Windows.Forms.TextBox txtOWPath;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.Button btnBrowseWoW;
@@ -347,7 +348,7 @@
         private System.Windows.Forms.GroupBox grpboxWOW;
         private System.Windows.Forms.GroupBox grpboxOW;
         private System.Windows.Forms.Button btnWOWAddonsLoc;
-        private System.Windows.Forms.TextBox txtAddons;
+        private System.Windows.Forms.TextBox txtAddonsPath;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox cbnOWLang;
         private System.Windows.Forms.Label label5;
