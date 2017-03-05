@@ -52,6 +52,7 @@
             this.lblOWError = new System.Windows.Forms.Label();
             this.lblWoWError = new System.Windows.Forms.Label();
             this.lblNameError = new System.Windows.Forms.Label();
+            this.lblChkboxError = new System.Windows.Forms.Label();
             this.grpboxWOW.SuspendLayout();
             this.grpboxOW.SuspendLayout();
             this.SuspendLayout();
@@ -285,11 +286,23 @@
             this.lblNameError.Text = "Please fill in a Profille Name";
             this.lblNameError.Visible = false;
             // 
+            // lblChkboxError
+            // 
+            this.lblChkboxError.AutoSize = true;
+            this.lblChkboxError.ForeColor = System.Drawing.Color.Red;
+            this.lblChkboxError.Location = new System.Drawing.Point(192, 301);
+            this.lblChkboxError.Name = "lblChkboxError";
+            this.lblChkboxError.Size = new System.Drawing.Size(261, 20);
+            this.lblChkboxError.TabIndex = 15;
+            this.lblChkboxError.Text = "Please check at least one checkbox";
+            this.lblChkboxError.Visible = false;
+            // 
             // formNewProfile
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(589, 470);
+            this.Controls.Add(this.lblChkboxError);
             this.Controls.Add(this.lblNameError);
             this.Controls.Add(this.lblOWError);
             this.Controls.Add(this.lblWoWError);
@@ -341,5 +354,6 @@
         private System.Windows.Forms.Label lblOWError;
         private System.Windows.Forms.Label lblWoWError;
         private System.Windows.Forms.Label lblNameError;
+        private System.Windows.Forms.Label lblChkboxError;
     }
 }

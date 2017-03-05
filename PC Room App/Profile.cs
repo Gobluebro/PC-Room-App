@@ -10,9 +10,9 @@ namespace PC_Room_App
     {
         public string profileName { get; set; }
         public string preferredProfile { get; set; }
-        public string getWoWLocation { get; set; }
-        public string getWoWAddonsLocation { get; set; }
-        public string getOWLocation { get; set; }
-        public string getOWLanguage { get; set; }
+        public string WoWLocation { get; set; }
+        public string WoWAddonsLocation { get; set; }
+        public string OWLocation { get; set; }
+        public string OWLanguage { get; set; }
     }
 }
