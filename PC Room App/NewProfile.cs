@@ -96,26 +96,26 @@ namespace PC_Room_App
                 //in the case of the first time creates the file, in the case of the second time it appends (thank you whoever wrote this nice constructor)
                 using (StreamWriter writer = new StreamWriter("Cache.txt",true))
                 {
-                    writer.WriteLine("Profile Name: " + txtProfileName.Text);
+                    writer.WriteLine("Profile Name=" + txtProfileName.Text);
                     if (chkWOW.Checked)
                     {
-                        writer.WriteLine("WoW Path: " + txtWoWPath.Text);
-                        writer.WriteLine("WoW Addons Path: " + txtAddonsPath.Text);
+                        writer.WriteLine("WoW Path=" + txtWoWPath.Text);
+                        writer.WriteLine("WoW Addons Path=" + txtAddonsPath.Text);
                     }
                     else
                     {
-                        writer.WriteLine("WoW Path: ");
-                        writer.WriteLine("WoW Addons Path: ");
+                        writer.WriteLine("WoW Path= ");
+                        writer.WriteLine("WoW Addons Path= ");
                     }
                     if (chkOW.Checked)
                     {
-                        writer.WriteLine("Overwatch Path: " + txtOWPath.Text);
-                        writer.WriteLine("Overwatch Language: " + cbnOWLang.Text);
+                        writer.WriteLine("Overwatch Path=" + txtOWPath.Text);
+                        writer.WriteLine("Overwatch Language=" + cbnOWLang.Text);
                     }
                     else
                     {
-                        writer.WriteLine("Overwatch Path: ");
-                        writer.WriteLine("Overwatch Language: ");
+                        writer.WriteLine("Overwatch Path= ");
+                        writer.WriteLine("Overwatch Language= ");
                     }
                     writer.WriteLine(";");
                 }
