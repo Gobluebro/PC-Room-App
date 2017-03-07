@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -97,6 +98,14 @@ namespace PC_Room_App
                 using (StreamWriter writer = new StreamWriter("Cache.txt",true))
                 {
                     writer.WriteLine("Profile Name=" + txtProfileName.Text);
+                    if (chkPrefProf.Checked)
+                    {
+                        writer.WriteLine("Preferred Profile=1");
+                    }
+                    else
+                    {
+                        writer.WriteLine("Preferred Profile=0");
+                    }
                     if (chkWOW.Checked)
                     {
                         writer.WriteLine("WoW Path=" + txtWoWPath.Text);
@@ -164,12 +173,11 @@ namespace PC_Room_App
 
         private void formCreateNewProfile_Load(object sender, EventArgs e)
         {
-
-        }
-
-        private void cbnOWLang_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            //cbnOWLang.Text = cbnOWLang.selected
+            //if cache file doesn't exist.
+            if (!(File.Exists(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\Cache.txt"))){
+                chkPrefProf.Checked = true;
+                chkPrefProf.Enabled = false;
+            }
         }
     }
 }

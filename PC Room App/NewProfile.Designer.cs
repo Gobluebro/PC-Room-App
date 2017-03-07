@@ -53,6 +53,7 @@
             this.lblWoWError = new System.Windows.Forms.Label();
             this.lblNameError = new System.Windows.Forms.Label();
             this.lblChkboxError = new System.Windows.Forms.Label();
+            this.chkPrefProf = new System.Windows.Forms.CheckBox();
             this.grpboxWOW.SuspendLayout();
             this.grpboxOW.SuspendLayout();
             this.SuspendLayout();
@@ -243,7 +244,6 @@
             this.cbnOWLang.Name = "cbnOWLang";
             this.cbnOWLang.Size = new System.Drawing.Size(279, 28);
             this.cbnOWLang.TabIndex = 11;
-            this.cbnOWLang.SelectedIndexChanged += new System.EventHandler(this.cbnOWLang_SelectedIndexChanged);
             // 
             // label5
             // 
@@ -298,11 +298,22 @@
             this.lblChkboxError.Text = "Please check at least one checkbox";
             this.lblChkboxError.Visible = false;
             // 
+            // chkPrefProf
+            // 
+            this.chkPrefProf.AutoSize = true;
+            this.chkPrefProf.Location = new System.Drawing.Point(34, 55);
+            this.chkPrefProf.Name = "chkPrefProf";
+            this.chkPrefProf.Size = new System.Drawing.Size(149, 24);
+            this.chkPrefProf.TabIndex = 16;
+            this.chkPrefProf.Text = "Preferred Profile";
+            this.chkPrefProf.UseVisualStyleBackColor = true;
+            // 
             // formCreateNewProfile
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(589, 470);
+            this.Controls.Add(this.chkPrefProf);
             this.Controls.Add(this.lblChkboxError);
             this.Controls.Add(this.lblNameError);
             this.Controls.Add(this.lblOWError);
@@ -356,5 +367,6 @@
         private System.Windows.Forms.Label lblWoWError;
         private System.Windows.Forms.Label lblNameError;
         private System.Windows.Forms.Label lblChkboxError;
+        private System.Windows.Forms.CheckBox chkPrefProf;
     }
 }

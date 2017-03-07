@@ -9,7 +9,7 @@ namespace PC_Room_App
     public class Profile
     {
         public string profileName { get; set; }
-        public string preferredProfile { get; set; }
+        public bool preferredProfile { get; set; }
         public string WoWPath { get; set; }
         public string WoWAddonsPath{ get; set; }
         public string OWPath { get; set; }

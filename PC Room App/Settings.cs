@@ -28,6 +28,7 @@ namespace PC_Room_App
             string[] readText = File.ReadAllLines(cachePath);
 
             string testProfileName = "";
+            bool testPrefProf = false;
             string testWoWPath = "";
             string testAddonPath = "";
             string testOWPath = "";
@@ -44,6 +45,10 @@ namespace PC_Room_App
                     {
                         case "Profile Name":
                             testProfileName = splitString[1];
+                            break;
+                        case "Preferred Profile":
+                            int testBinBool = Int32.Parse(splitString[1]);
+                            testPrefProf = testBinBool == 1 ? true : false;
                             break;
                         case "WoW Path":
                             testWoWPath = splitString[1];
@@ -63,11 +68,17 @@ namespace PC_Room_App
                 {
                     dictProfiles.Add(profileCounter, new Profile {
                         profileName = testProfileName,
+                        preferredProfile = testPrefProf,
                         WoWPath = testWoWPath,
                         WoWAddonsPath = testAddonPath,
                         OWPath = testOWPath,
                         OWLanguage = testOWLang
                     });
+                    if (dictProfiles[profileCounter].preferredProfile)
+                    {
+                        currentProfile = dictProfiles[profileCounter];
+                        openProfile.Text = dictProfiles[profileCounter].profileName;
+                    }
                     profileCounter++;
                 }
             }
@@ -109,8 +120,8 @@ namespace PC_Room_App
 
         private void Settings_Load(object sender, EventArgs e)
         {
-            openProfile.Text = "No Profile";
             LoadProfile();
+
             AddProfilesToMenu();
         }
 
