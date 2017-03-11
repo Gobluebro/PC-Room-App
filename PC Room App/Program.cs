@@ -18,9 +18,8 @@ namespace PC_Room_App
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-
-            string cachePath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\Cache.txt";
-            bool existingProfile = File.Exists(cachePath);
+ 
+            bool existingProfile = File.Exists(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\Cache.txt");
             if (!existingProfile)
             {
                 MessageBox.Show("Please Create a Profile", "No Existing Profile.");

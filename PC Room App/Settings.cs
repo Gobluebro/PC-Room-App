@@ -10,14 +10,13 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.VisualBasic.FileIO;
 using System.Reflection;
+using System.Diagnostics;
 
 namespace PC_Room_App
 {
     public partial class formSettings : Form
     {
-        bool checkedWoW = false;
-        bool checkedOW = false;
-        //the way to make dynamically created objects in c# and know their name
+        //the way to make dynamically created objects in c# and get them into an array like thing
         Dictionary<int, Profile> dictProfiles = new Dictionary<int, Profile>();
         int profileCounter = 0;
         Profile currentProfile = new Profile();
@@ -71,8 +70,8 @@ namespace PC_Room_App
                         preferredProfile = testPrefProf,
                         WoWPath = testWoWPath,
                         WoWAddonsPath = testAddonPath,
-                        OWPath = testOWPath,
-                        OWLanguage = testOWLang
+                        BnetAppPath = testOWPath,
+                        BnetAppLanguage = testOWLang
                     });
                     if (dictProfiles[profileCounter].preferredProfile)
                     {
@@ -118,28 +117,67 @@ namespace PC_Room_App
             openProfile.Text = currentProfile.profileName;
         }
 
+        private void LaunchBattleNetApp()
+        {        
+            // Use ProcessStartInfo class.
+            ProcessStartInfo startBattleNetApp = new ProcessStartInfo();
+            startBattleNetApp.CreateNoWindow = true;
+            startBattleNetApp.UseShellExecute = false;
+            startBattleNetApp.FileName = @"C:\Program Files (x86)\Battle.net\Battle.net.exe";
+            startBattleNetApp.WindowStyle = ProcessWindowStyle.Normal;
+            string args = "";
+            if (currentProfile.BnetAppLanguage == "English")
+            {
+                //en = english US = USA
+                args = " --setregion=KR --setlanguage=koKR";
+            }
+            else if(currentProfile.BnetAppLanguage == "한국어")
+            {
+                //ko = korean kr = korea
+                args = " --setregion=KR --setlanguage=enUS";
+            }
+            startBattleNetApp.Arguments = args;
+            try
+            {
+                Process.Start(startBattleNetApp);
+            }
+            catch
+            {
+                MessageBox.Show("Program couldn't be started.");
+            }
+        }
+
         private void Settings_Load(object sender, EventArgs e)
         {
-            LoadProfile();
-
-            AddProfilesToMenu();
+            bool existingProfile = File.Exists(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\Cache.txt");
+            if (existingProfile)
+            {
+                LoadProfile();
+                AddProfilesToMenu();
+                LaunchBattleNetApp();
+            }
+            else
+            {
+                MessageBox.Show("Please Create a Profile", "No Existing Profile.");
+                Application.Run(new formCreateNewProfile());
+            }
+            
         }
 
         private void btnEnter_Click(object sender, EventArgs e)
         {
-            if (checkedWoW)
+            //if you wanted to give people the option of overriding or not through windows use UIOption.AllDialogs instead of true
+            FileSystem.CopyDirectory(currentProfile.WoWAddonsPath, currentProfile.WoWPath, true);
+            //TODO: look into fading in and out(timers)
+            lblFiles.Visible = true;
+
+            /*if (checkWoW)
             {
-                string addonsDirName = currentProfile.WoWAddonsPath;
-                string wowDirName = currentProfile.WoWPath; 
-                //if you wanted to give people the option of overriding or not through windows use UIOption.AllDialogs instead of true
-                FileSystem.CopyDirectory(addonsDirName, wowDirName, true);
-                //TODO: look into fading in and out(timers)
-                lblFiles.Visible = true;
-            }
-            if (checkedOW)
+            }*/
+            /*if (checkedOW)
             {
                 //TODO change OW settings
-            }
+            }*/
         }
 
         #region button clicks
@@ -154,21 +192,21 @@ namespace PC_Room_App
         //though I never checked if I could make checkboxes with images. oh well
         private void btnWOW_Click(object sender, EventArgs e)
         {
-            if (!checkedWoW)
-            {
-                checkedWoW = true;
-                btnWOW.BackColor = Color.Black;
-            }
-            else
-            {
-                checkedWoW = false;
-                btnWOW.BackColor = Color.White;
-            }
+            /*if (!checkedWoW)
+             {
+                 checkedWoW = true;
+                 btnWOW.BackColor = Color.Black;
+             }
+             else
+             {
+                 checkedWoW = false;
+                 btnWOW.BackColor = Color.White;
+             }*/
         }
 
         private void btnOW_Click(object sender, EventArgs e)
         {
-            if (!checkedOW)
+            /*if (!checkedOW)
             {
                 checkedOW = true;
                 btnOW.BackColor = Color.Black;
@@ -177,7 +215,7 @@ namespace PC_Room_App
             {
                 checkedOW = false;
                 btnOW.BackColor = Color.White;
-            }
+            }*/
         }
         #endregion
     }

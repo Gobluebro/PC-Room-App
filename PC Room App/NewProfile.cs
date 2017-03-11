@@ -45,7 +45,7 @@ namespace PC_Room_App
                 DialogResult result = folderBrowserDialog1.ShowDialog();
                 if (result == DialogResult.OK)
                 {
-                    txtOWPath.Text = folderBrowserDialog1.SelectedPath;
+                    txtBNAppPath.Text = folderBrowserDialog1.SelectedPath;
                 }
             }
         }
@@ -81,7 +81,7 @@ namespace PC_Room_App
                 lblChkboxError.Visible = false;
                 lblWoWError.Visible = true;
             }
-            else if (chkOW.Checked && (txtOWPath.Text == "" || cbnOWLang.Text == ""))
+            else if (chkOW.Checked && (txtBNAppPath.Text == "" || cbnOWLang.Text == ""))
             {
                 //error checking if boxes are filled in for overwatch
                 //hide the checkbox error since we obviously have a boxed checked
@@ -118,13 +118,13 @@ namespace PC_Room_App
                     }
                     if (chkOW.Checked)
                     {
-                        writer.WriteLine("Overwatch Path=" + txtOWPath.Text);
-                        writer.WriteLine("Overwatch Language=" + cbnOWLang.Text);
+                        writer.WriteLine("Battle.net App Path=" + txtBNAppPath.Text);
+                        writer.WriteLine("Battle.net App Language=" + cbnOWLang.Text);
                     }
                     else
                     {
-                        writer.WriteLine("Overwatch Path= ");
-                        writer.WriteLine("Overwatch Language= ");
+                        writer.WriteLine("Battle.net App Path= ");
+                        writer.WriteLine("Battle.net App Language= ");
                     }
                     writer.WriteLine(";");
                 }

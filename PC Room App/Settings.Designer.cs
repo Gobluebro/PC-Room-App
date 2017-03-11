@@ -55,6 +55,7 @@
             this.btnWOW.TabIndex = 0;
             this.btnWOW.Text = "World of Warcraft";
             this.btnWOW.UseVisualStyleBackColor = false;
+            this.btnWOW.Visible = false;
             this.btnWOW.Click += new System.EventHandler(this.btnWOW_Click);
             // 
             // btnOW
@@ -67,6 +68,7 @@
             this.btnOW.TabIndex = 1;
             this.btnOW.Text = "Overwatch";
             this.btnOW.UseVisualStyleBackColor = false;
+            this.btnOW.Visible = false;
             this.btnOW.Click += new System.EventHandler(this.btnOW_Click);
             // 
             // menuStrip1
@@ -93,14 +95,14 @@
             // newProfile
             // 
             this.newProfile.Name = "newProfile";
-            this.newProfile.Size = new System.Drawing.Size(211, 30);
+            this.newProfile.Size = new System.Drawing.Size(141, 30);
             this.newProfile.Text = "New";
             this.newProfile.Click += new System.EventHandler(this.newProfile_Click);
             // 
             // openProfile
             // 
             this.openProfile.Name = "openProfile";
-            this.openProfile.Size = new System.Drawing.Size(211, 30);
+            this.openProfile.Size = new System.Drawing.Size(141, 30);
             this.openProfile.Text = "Open";
             // 
             // helpToolStripMenuItem

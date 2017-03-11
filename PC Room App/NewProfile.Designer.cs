@@ -34,7 +34,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txtProfileName = new System.Windows.Forms.TextBox();
             this.txtWoWPath = new System.Windows.Forms.TextBox();
-            this.txtOWPath = new System.Windows.Forms.TextBox();
+            this.txtBNAppPath = new System.Windows.Forms.TextBox();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
             this.btnBrowseWoW = new System.Windows.Forms.Button();
@@ -79,11 +79,11 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(92, 25);
+            this.label3.Location = new System.Drawing.Point(65, 25);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(125, 20);
+            this.label3.Size = new System.Drawing.Size(152, 20);
             this.label3.TabIndex = 2;
-            this.label3.Text = "Overwatch Path:";
+            this.label3.Text = "Battle.net App Path:";
             // 
             // txtProfileName
             // 
@@ -101,14 +101,14 @@
             this.txtWoWPath.Size = new System.Drawing.Size(279, 26);
             this.txtWoWPath.TabIndex = 4;
             // 
-            // txtOWPath
+            // txtBNAppPath
             // 
-            this.txtOWPath.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.txtOWPath.Location = new System.Drawing.Point(239, 22);
-            this.txtOWPath.Name = "txtOWPath";
-            this.txtOWPath.ReadOnly = true;
-            this.txtOWPath.Size = new System.Drawing.Size(279, 26);
-            this.txtOWPath.TabIndex = 5;
+            this.txtBNAppPath.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.txtBNAppPath.Location = new System.Drawing.Point(239, 22);
+            this.txtBNAppPath.Name = "txtBNAppPath";
+            this.txtBNAppPath.ReadOnly = true;
+            this.txtBNAppPath.Size = new System.Drawing.Size(279, 26);
+            this.txtBNAppPath.TabIndex = 5;
             // 
             // btnSave
             // 
@@ -224,14 +224,14 @@
             this.grpboxOW.Controls.Add(this.cbnOWLang);
             this.grpboxOW.Controls.Add(this.label5);
             this.grpboxOW.Controls.Add(this.btnBrowseOW);
-            this.grpboxOW.Controls.Add(this.txtOWPath);
+            this.grpboxOW.Controls.Add(this.txtBNAppPath);
             this.grpboxOW.Controls.Add(this.label3);
             this.grpboxOW.Location = new System.Drawing.Point(12, 197);
             this.grpboxOW.Name = "grpboxOW";
             this.grpboxOW.Size = new System.Drawing.Size(575, 97);
             this.grpboxOW.TabIndex = 13;
             this.grpboxOW.TabStop = false;
-            this.grpboxOW.Text = "Overwatch Information";
+            this.grpboxOW.Text = "Battle.net App Information";
             this.grpboxOW.Visible = false;
             // 
             // cbnOWLang
@@ -258,11 +258,11 @@
             // 
             this.lblOWError.AutoSize = true;
             this.lblOWError.ForeColor = System.Drawing.Color.Red;
-            this.lblOWError.Location = new System.Drawing.Point(164, 323);
+            this.lblOWError.Location = new System.Drawing.Point(161, 325);
             this.lblOWError.Name = "lblOWError";
-            this.lblOWError.Size = new System.Drawing.Size(289, 20);
+            this.lblOWError.Size = new System.Drawing.Size(316, 20);
             this.lblOWError.TabIndex = 12;
-            this.lblOWError.Text = "Please fill in every textbox for Overwatch";
+            this.lblOWError.Text = "Please fill in every textbox for Battle.net App";
             this.lblOWError.Visible = false;
             // 
             // lblWoWError
@@ -301,7 +301,7 @@
             // chkPrefProf
             // 
             this.chkPrefProf.AutoSize = true;
-            this.chkPrefProf.Location = new System.Drawing.Point(34, 55);
+            this.chkPrefProf.Location = new System.Drawing.Point(34, 61);
             this.chkPrefProf.Name = "chkPrefProf";
             this.chkPrefProf.Size = new System.Drawing.Size(149, 24);
             this.chkPrefProf.TabIndex = 16;
@@ -348,7 +348,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtProfileName;
         private System.Windows.Forms.TextBox txtWoWPath;
-        private System.Windows.Forms.TextBox txtOWPath;
+        private System.Windows.Forms.TextBox txtBNAppPath;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.Button btnBrowseWoW;
