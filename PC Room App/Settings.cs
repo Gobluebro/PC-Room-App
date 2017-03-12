@@ -30,8 +30,8 @@ namespace PC_Room_App
             bool testPrefProf = false;
             string testWoWPath = "";
             string testAddonPath = "";
-            string testOWPath = "";
-            string testOWLang = "";
+            string testBnetAppPath = "";
+            string testBnetAppLang = "";
 
             foreach (string lines in readText)
             {
@@ -55,11 +55,11 @@ namespace PC_Room_App
                         case "WoW Addons Path":
                             testAddonPath = splitString[1];
                             break;
-                        case "Overwatch Path":
-                            testOWPath = splitString[1];
+                        case "Battle.net App Path":
+                            testBnetAppPath = splitString[1];
                             break;
-                        case "Overwatch Language":
-                            testOWLang = splitString[1];
+                        case "Battle.net App Language":
+                            testBnetAppLang = splitString[1];
                             break;
                     }
                 }
@@ -70,8 +70,8 @@ namespace PC_Room_App
                         preferredProfile = testPrefProf,
                         WoWPath = testWoWPath,
                         WoWAddonsPath = testAddonPath,
-                        BnetAppPath = testOWPath,
-                        BnetAppLanguage = testOWLang
+                        BnetAppPath = testBnetAppPath,
+                        BnetAppLanguage = testBnetAppLang
                     });
                     if (dictProfiles[profileCounter].preferredProfile)
                     {
@@ -126,15 +126,17 @@ namespace PC_Room_App
             startBattleNetApp.FileName = @"C:\Program Files (x86)\Battle.net\Battle.net.exe";
             startBattleNetApp.WindowStyle = ProcessWindowStyle.Normal;
             string args = "";
+            //only support two languages currently TODO: more languages
             if (currentProfile.BnetAppLanguage == "English")
             {
                 //en = english US = USA
-                args = " --setregion=KR --setlanguage=koKR";
+                args = " --setlanguage=enUS";
             }
             else if(currentProfile.BnetAppLanguage == "한국어")
             {
                 //ko = korean kr = korea
-                args = " --setregion=KR --setlanguage=enUS";
+                //kind of irrelevant since korean PCrooms would just have korean as the standard anyway
+                args = " --setlanguage=koKR";
             }
             startBattleNetApp.Arguments = args;
             try
@@ -154,7 +156,6 @@ namespace PC_Room_App
             {
                 LoadProfile();
                 AddProfilesToMenu();
-                LaunchBattleNetApp();
             }
             else
             {
@@ -166,57 +167,21 @@ namespace PC_Room_App
 
         private void btnEnter_Click(object sender, EventArgs e)
         {
+            //taken from visualbasic because it's so good
             //if you wanted to give people the option of overriding or not through windows use UIOption.AllDialogs instead of true
             FileSystem.CopyDirectory(currentProfile.WoWAddonsPath, currentProfile.WoWPath, true);
+
             //TODO: look into fading in and out(timers)
             lblFiles.Visible = true;
 
-            /*if (checkWoW)
-            {
-            }*/
-            /*if (checkedOW)
-            {
-                //TODO change OW settings
-            }*/
+            LaunchBattleNetApp();
         }
 
-        #region button clicks
         private void newProfile_Click(object sender, EventArgs e)
         {
             formCreateNewProfile formCreateProfile = new formCreateNewProfile();
             formCreateProfile.Show();
             Visible = false;
         }
-
-        //buttons function like checkboxs but I like the size of buttons better than regular checkboxes.
-        //though I never checked if I could make checkboxes with images. oh well
-        private void btnWOW_Click(object sender, EventArgs e)
-        {
-            /*if (!checkedWoW)
-             {
-                 checkedWoW = true;
-                 btnWOW.BackColor = Color.Black;
-             }
-             else
-             {
-                 checkedWoW = false;
-                 btnWOW.BackColor = Color.White;
-             }*/
-        }
-
-        private void btnOW_Click(object sender, EventArgs e)
-        {
-            /*if (!checkedOW)
-            {
-                checkedOW = true;
-                btnOW.BackColor = Color.Black;
-            }
-            else
-            {
-                checkedOW = false;
-                btnOW.BackColor = Color.White;
-            }*/
-        }
-        #endregion
     }
 }

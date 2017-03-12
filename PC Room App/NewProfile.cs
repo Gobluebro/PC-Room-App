@@ -69,7 +69,7 @@ namespace PC_Room_App
                 //pretty skeptical on only this because users could just write spaces
                 lblNameError.Visible = true;
             }
-            else if (!chkWOW.Checked && !chkOW.Checked)
+            else if (!chkWOW.Checked && !chkBnetApp.Checked)
             {
                 //because what's the point of just saving a profile with only a name
                 lblChkboxError.Visible = true;
@@ -81,7 +81,7 @@ namespace PC_Room_App
                 lblChkboxError.Visible = false;
                 lblWoWError.Visible = true;
             }
-            else if (chkOW.Checked && (txtBNAppPath.Text == "" || cbnOWLang.Text == ""))
+            else if (chkBnetApp.Checked && (txtBNAppPath.Text == "" || cbnOWLang.Text == ""))
             {
                 //error checking if boxes are filled in for overwatch
                 //hide the checkbox error since we obviously have a boxed checked
@@ -116,7 +116,7 @@ namespace PC_Room_App
                         writer.WriteLine("WoW Path= ");
                         writer.WriteLine("WoW Addons Path= ");
                     }
-                    if (chkOW.Checked)
+                    if (chkBnetApp.Checked)
                     {
                         writer.WriteLine("Battle.net App Path=" + txtBNAppPath.Text);
                         writer.WriteLine("Battle.net App Language=" + cbnOWLang.Text);
@@ -159,9 +159,9 @@ namespace PC_Room_App
             }
         }
 
-        private void chkOW_CheckedChanged(object sender, EventArgs e)
+        private void chkBnetApp_CheckedChanged(object sender, EventArgs e)
         {
-            if (chkOW.Checked)
+            if (chkBnetApp.Checked)
             {
                 grpboxOW.Visible = true;
             }

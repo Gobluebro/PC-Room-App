@@ -41,7 +41,7 @@
             this.btnBrowseOW = new System.Windows.Forms.Button();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.chkWOW = new System.Windows.Forms.CheckBox();
-            this.chkOW = new System.Windows.Forms.CheckBox();
+            this.chkBnetApp = new System.Windows.Forms.CheckBox();
             this.grpboxWOW = new System.Windows.Forms.GroupBox();
             this.btnWOWAddonsLoc = new System.Windows.Forms.Button();
             this.txtAddonsPath = new System.Windows.Forms.TextBox();
@@ -112,7 +112,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(34, 373);
+            this.btnSave.Location = new System.Drawing.Point(29, 398);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(174, 86);
             this.btnSave.TabIndex = 6;
@@ -122,7 +122,7 @@
             // 
             // btnExit
             // 
-            this.btnExit.Location = new System.Drawing.Point(378, 372);
+            this.btnExit.Location = new System.Drawing.Point(373, 397);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(174, 86);
             this.btnExit.TabIndex = 7;
@@ -163,16 +163,16 @@
             this.chkWOW.UseVisualStyleBackColor = true;
             this.chkWOW.CheckedChanged += new System.EventHandler(this.chkWOW_CheckedChanged);
             // 
-            // chkOW
+            // chkBnetApp
             // 
-            this.chkOW.AutoSize = true;
-            this.chkOW.Location = new System.Drawing.Point(442, 63);
-            this.chkOW.Name = "chkOW";
-            this.chkOW.Size = new System.Drawing.Size(110, 24);
-            this.chkOW.TabIndex = 11;
-            this.chkOW.Text = "Overwatch";
-            this.chkOW.UseVisualStyleBackColor = true;
-            this.chkOW.CheckedChanged += new System.EventHandler(this.chkOW_CheckedChanged);
+            this.chkBnetApp.AutoSize = true;
+            this.chkBnetApp.Location = new System.Drawing.Point(442, 63);
+            this.chkBnetApp.Name = "chkBnetApp";
+            this.chkBnetApp.Size = new System.Drawing.Size(110, 24);
+            this.chkBnetApp.TabIndex = 11;
+            this.chkBnetApp.Text = "Overwatch";
+            this.chkBnetApp.UseVisualStyleBackColor = true;
+            this.chkBnetApp.CheckedChanged += new System.EventHandler(this.chkBnetApp_CheckedChanged);
             // 
             // grpboxWOW
             // 
@@ -248,7 +248,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(132, 54);
+            this.label5.Location = new System.Drawing.Point(132, 56);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(85, 20);
             this.label5.TabIndex = 10;
@@ -258,7 +258,7 @@
             // 
             this.lblOWError.AutoSize = true;
             this.lblOWError.ForeColor = System.Drawing.Color.Red;
-            this.lblOWError.Location = new System.Drawing.Point(161, 325);
+            this.lblOWError.Location = new System.Drawing.Point(156, 350);
             this.lblOWError.Name = "lblOWError";
             this.lblOWError.Size = new System.Drawing.Size(316, 20);
             this.lblOWError.TabIndex = 12;
@@ -269,7 +269,7 @@
             // 
             this.lblWoWError.AutoSize = true;
             this.lblWoWError.ForeColor = System.Drawing.Color.Red;
-            this.lblWoWError.Location = new System.Drawing.Point(149, 301);
+            this.lblWoWError.Location = new System.Drawing.Point(144, 326);
             this.lblWoWError.Name = "lblWoWError";
             this.lblWoWError.Size = new System.Drawing.Size(338, 20);
             this.lblWoWError.TabIndex = 13;
@@ -280,7 +280,7 @@
             // 
             this.lblNameError.AutoSize = true;
             this.lblNameError.ForeColor = System.Drawing.Color.Red;
-            this.lblNameError.Location = new System.Drawing.Point(211, 346);
+            this.lblNameError.Location = new System.Drawing.Point(206, 371);
             this.lblNameError.Name = "lblNameError";
             this.lblNameError.Size = new System.Drawing.Size(201, 20);
             this.lblNameError.TabIndex = 14;
@@ -291,7 +291,7 @@
             // 
             this.lblChkboxError.AutoSize = true;
             this.lblChkboxError.ForeColor = System.Drawing.Color.Red;
-            this.lblChkboxError.Location = new System.Drawing.Point(192, 301);
+            this.lblChkboxError.Location = new System.Drawing.Point(187, 305);
             this.lblChkboxError.Name = "lblChkboxError";
             this.lblChkboxError.Size = new System.Drawing.Size(261, 20);
             this.lblChkboxError.TabIndex = 15;
@@ -312,7 +312,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(589, 470);
+            this.ClientSize = new System.Drawing.Size(588, 497);
             this.Controls.Add(this.chkPrefProf);
             this.Controls.Add(this.lblChkboxError);
             this.Controls.Add(this.lblNameError);
@@ -320,15 +320,15 @@
             this.Controls.Add(this.lblWoWError);
             this.Controls.Add(this.grpboxOW);
             this.Controls.Add(this.grpboxWOW);
-            this.Controls.Add(this.chkOW);
+            this.Controls.Add(this.chkBnetApp);
             this.Controls.Add(this.chkWOW);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.txtProfileName);
             this.Controls.Add(this.label1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximumSize = new System.Drawing.Size(611, 526);
-            this.MinimumSize = new System.Drawing.Size(611, 526);
+            this.MaximumSize = new System.Drawing.Size(610, 553);
+            this.MinimumSize = new System.Drawing.Size(610, 553);
             this.Name = "formCreateNewProfile";
             this.Text = "Create a New Profile";
             this.Load += new System.EventHandler(this.formCreateNewProfile_Load);
@@ -355,7 +355,7 @@
         private System.Windows.Forms.Button btnBrowseOW;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
         private System.Windows.Forms.CheckBox chkWOW;
-        private System.Windows.Forms.CheckBox chkOW;
+        private System.Windows.Forms.CheckBox chkBnetApp;
         private System.Windows.Forms.GroupBox grpboxWOW;
         private System.Windows.Forms.GroupBox grpboxOW;
         private System.Windows.Forms.Button btnWOWAddonsLoc;
