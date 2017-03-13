@@ -27,7 +27,7 @@ namespace PC_Room_App
             }
             else
             {
-                Application.Run(new formSettings());
+                Application.Run(new FormSettings());
             }
             
         }

@@ -1,6 +1,6 @@
 ﻿namespace PC_Room_App
 {
-    partial class formSettings
+    partial class FormSettings
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(formSettings));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormSettings));
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.profileMenu = new System.Windows.Forms.ToolStripMenuItem();
@@ -37,10 +37,11 @@
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fAQToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutDeveloperToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnEnter = new System.Windows.Forms.Button();
+            this.btnChangeSettings = new System.Windows.Forms.Button();
             this.lblFiles = new System.Windows.Forms.Label();
             this.lblSettings = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnSaveAddons = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -68,14 +69,14 @@
             // newProfile
             // 
             this.newProfile.Name = "newProfile";
-            this.newProfile.Size = new System.Drawing.Size(211, 30);
+            this.newProfile.Size = new System.Drawing.Size(141, 30);
             this.newProfile.Text = "New";
-            this.newProfile.Click += new System.EventHandler(this.newProfile_Click);
+            this.newProfile.Click += new System.EventHandler(this.NewProfile_Click);
             // 
             // openProfile
             // 
             this.openProfile.Name = "openProfile";
-            this.openProfile.Size = new System.Drawing.Size(211, 30);
+            this.openProfile.Size = new System.Drawing.Size(141, 30);
             this.openProfile.Text = "Open";
             // 
             // helpToolStripMenuItem
@@ -99,20 +100,20 @@
             this.aboutDeveloperToolStripMenuItem.Size = new System.Drawing.Size(233, 30);
             this.aboutDeveloperToolStripMenuItem.Text = "About Developer";
             // 
-            // btnEnter
+            // btnChangeSettings
             // 
-            this.btnEnter.Location = new System.Drawing.Point(235, 240);
-            this.btnEnter.Name = "btnEnter";
-            this.btnEnter.Size = new System.Drawing.Size(269, 98);
-            this.btnEnter.TabIndex = 3;
-            this.btnEnter.Text = "Change settings";
-            this.btnEnter.UseVisualStyleBackColor = true;
-            this.btnEnter.Click += new System.EventHandler(this.btnEnter_Click);
+            this.btnChangeSettings.Location = new System.Drawing.Point(235, 178);
+            this.btnChangeSettings.Name = "btnChangeSettings";
+            this.btnChangeSettings.Size = new System.Drawing.Size(269, 98);
+            this.btnChangeSettings.TabIndex = 3;
+            this.btnChangeSettings.Text = "Change Settings";
+            this.btnChangeSettings.UseVisualStyleBackColor = true;
+            this.btnChangeSettings.Click += new System.EventHandler(this.BtnChangeSettings_Click);
             // 
             // lblFiles
             // 
             this.lblFiles.AutoSize = true;
-            this.lblFiles.Location = new System.Drawing.Point(266, 388);
+            this.lblFiles.Location = new System.Drawing.Point(269, 389);
             this.lblFiles.Name = "lblFiles";
             this.lblFiles.Size = new System.Drawing.Size(171, 20);
             this.lblFiles.TabIndex = 4;
@@ -122,7 +123,7 @@
             // lblSettings
             // 
             this.lblSettings.AutoSize = true;
-            this.lblSettings.Location = new System.Drawing.Point(249, 409);
+            this.lblSettings.Location = new System.Drawing.Point(249, 415);
             this.lblSettings.Name = "lblSettings";
             this.lblSettings.Size = new System.Drawing.Size(212, 20);
             this.lblSettings.TabIndex = 5;
@@ -140,21 +141,32 @@
             this.label1.TabIndex = 6;
             this.label1.Text = "//TODO";
             // 
-            // formSettings
+            // btnSaveAddons
+            // 
+            this.btnSaveAddons.Location = new System.Drawing.Point(235, 287);
+            this.btnSaveAddons.Name = "btnSaveAddons";
+            this.btnSaveAddons.Size = new System.Drawing.Size(269, 98);
+            this.btnSaveAddons.TabIndex = 7;
+            this.btnSaveAddons.Text = "Save WoW Addons";
+            this.btnSaveAddons.UseVisualStyleBackColor = true;
+            this.btnSaveAddons.Click += new System.EventHandler(this.BtnSaveAddons_Click);
+            // 
+            // FormSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(738, 546);
+            this.Controls.Add(this.btnSaveAddons);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lblSettings);
             this.Controls.Add(this.lblFiles);
-            this.Controls.Add(this.btnEnter);
+            this.Controls.Add(this.btnChangeSettings);
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.MaximumSize = new System.Drawing.Size(760, 602);
             this.MinimumSize = new System.Drawing.Size(760, 602);
-            this.Name = "formSettings";
+            this.Name = "FormSettings";
             this.Text = "Choose which settings to load";
             this.Load += new System.EventHandler(this.Settings_Load);
             this.menuStrip1.ResumeLayout(false);
@@ -171,13 +183,14 @@
         private System.Windows.Forms.ToolStripMenuItem profileMenu;
         private System.Windows.Forms.ToolStripMenuItem newProfile;
         private System.Windows.Forms.ToolStripMenuItem openProfile;
-        private System.Windows.Forms.Button btnEnter;
+        private System.Windows.Forms.Button btnChangeSettings;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem fAQToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutDeveloperToolStripMenuItem;
         private System.Windows.Forms.Label lblFiles;
         private System.Windows.Forms.Label lblSettings;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnSaveAddons;
     }
 }
 

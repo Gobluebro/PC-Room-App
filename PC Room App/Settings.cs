@@ -14,7 +14,7 @@ using System.Diagnostics;
 
 namespace PC_Room_App
 {
-    public partial class formSettings : Form
+    public partial class FormSettings : Form
     {
         //the way to make dynamically created objects in c# and get them into an array like thing
         Dictionary<int, Profile> dictProfiles = new Dictionary<int, Profile>();
@@ -83,7 +83,7 @@ namespace PC_Room_App
             }
         }
 
-        public formSettings()
+        public FormSettings()
         {
             InitializeComponent();
         }
@@ -165,23 +165,44 @@ namespace PC_Room_App
             
         }
 
-        private void btnEnter_Click(object sender, EventArgs e)
+        private void BtnChangeSettings_Click(object sender, EventArgs e)
         {
             //taken from visualbasic because it's so good
             //if you wanted to give people the option of overriding or not through windows use UIOption.AllDialogs instead of true
             FileSystem.CopyDirectory(currentProfile.WoWAddonsPath, currentProfile.WoWPath, true);
 
             //TODO: look into fading in and out(timers)
+            lblFiles.Text = "Addons -> WoW" + Environment.NewLine + "Files have been copied";
             lblFiles.Visible = true;
 
             LaunchBattleNetApp();
         }
 
-        private void newProfile_Click(object sender, EventArgs e)
+        private void BtnSaveAddons_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("If you did not push the Change Settings button during your session then you may have some issues. A backup of your addons is recommended",
+                "Are you want to override your Addons? ", MessageBoxButtons.YesNo);
+            switch (dialogResult)
+            {
+                case DialogResult.Yes:
+                    FileSystem.CopyDirectory(currentProfile.WoWPath, currentProfile.WoWAddonsPath, true);
+                    lblFiles.Text = "WoW -> Addons" + Environment.NewLine + "Files have been copied";
+                    lblFiles.Visible = true;
+                    break;
+                case DialogResult.No:
+                    //nothing
+                    break;
+            }
+            
+        }
+
+        private void NewProfile_Click(object sender, EventArgs e)
         {
             formCreateNewProfile formCreateProfile = new formCreateNewProfile();
             formCreateProfile.Show();
             Visible = false;
         }
+
+        
     }
 }

@@ -17,7 +17,7 @@ namespace PC_Room_App
         #region multiple calls methods
         private void FormChange()
         {
-            formSettings frm = new formSettings();
+            FormSettings frm = new FormSettings();
             frm.Show();
             Visible = false;
         }
