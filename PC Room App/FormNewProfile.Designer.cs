@@ -168,9 +168,9 @@
             this.chkBnetApp.AutoSize = true;
             this.chkBnetApp.Location = new System.Drawing.Point(442, 63);
             this.chkBnetApp.Name = "chkBnetApp";
-            this.chkBnetApp.Size = new System.Drawing.Size(110, 24);
+            this.chkBnetApp.Size = new System.Drawing.Size(139, 24);
             this.chkBnetApp.TabIndex = 11;
-            this.chkBnetApp.Text = "Overwatch";
+            this.chkBnetApp.Text = "Battle.Net App";
             this.chkBnetApp.UseVisualStyleBackColor = true;
             this.chkBnetApp.CheckedChanged += new System.EventHandler(this.chkBnetApp_CheckedChanged);
             // 

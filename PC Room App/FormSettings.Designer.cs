@@ -93,12 +93,14 @@
             this.fAQToolStripMenuItem.Name = "fAQToolStripMenuItem";
             this.fAQToolStripMenuItem.Size = new System.Drawing.Size(233, 30);
             this.fAQToolStripMenuItem.Text = "FAQ";
+            this.fAQToolStripMenuItem.Click += new System.EventHandler(this.FAQToolStripMenuItem_Click);
             // 
             // aboutDeveloperToolStripMenuItem
             // 
             this.aboutDeveloperToolStripMenuItem.Name = "aboutDeveloperToolStripMenuItem";
             this.aboutDeveloperToolStripMenuItem.Size = new System.Drawing.Size(233, 30);
             this.aboutDeveloperToolStripMenuItem.Text = "About Developer";
+            this.aboutDeveloperToolStripMenuItem.Click += new System.EventHandler(this.AboutDeveloperToolStripMenuItem_Click);
             // 
             // btnChangeSettings
             // 
@@ -118,16 +120,18 @@
             this.lblFiles.Size = new System.Drawing.Size(171, 20);
             this.lblFiles.TabIndex = 4;
             this.lblFiles.Text = "Files have been copied";
+            this.lblFiles.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblFiles.Visible = false;
             // 
             // lblSettings
             // 
             this.lblSettings.AutoSize = true;
-            this.lblSettings.Location = new System.Drawing.Point(249, 415);
+            this.lblSettings.Location = new System.Drawing.Point(256, 421);
             this.lblSettings.Name = "lblSettings";
             this.lblSettings.Size = new System.Drawing.Size(212, 20);
             this.lblSettings.TabIndex = 5;
             this.lblSettings.Text = "Settings have been changed";
+            this.lblSettings.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblSettings.Visible = false;
             // 
             // label1
@@ -135,7 +139,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Green;
-            this.label1.Location = new System.Drawing.Point(221, 93);
+            this.label1.Location = new System.Drawing.Point(221, 60);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(283, 82);
             this.label1.TabIndex = 6;

@@ -180,8 +180,9 @@ namespace PC_Room_App
 
         private void BtnSaveAddons_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("If you did not push the Change Settings button during your session then you may have some issues. A backup of your addons is recommended",
-                "Are you want to override your Addons? ", MessageBoxButtons.YesNo);
+            //todo look into centering message box stuff, looks bad atm
+            DialogResult dialogResult = MessageBox.Show("If you did not push the Change Settings button during your session then you may have some issues." + Environment.NewLine + "A backup of your addons is recommended",
+                "Are you sure want to override your Addons? ", MessageBoxButtons.YesNo);
             switch (dialogResult)
             {
                 case DialogResult.Yes:
@@ -189,9 +190,9 @@ namespace PC_Room_App
                     lblFiles.Text = "WoW -> Addons" + Environment.NewLine + "Files have been copied";
                     lblFiles.Visible = true;
                     break;
-                case DialogResult.No:
+                /*case DialogResult.No:
                     //nothing
-                    break;
+                    break;*/
             }
             
         }
@@ -203,6 +204,24 @@ namespace PC_Room_App
             Visible = false;
         }
 
-        
+        private void FAQToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormFAQ newFormFAQ = new FormFAQ()
+            {
+                //center the new form in the middle of the old one
+                StartPosition = FormStartPosition.CenterParent
+            };
+            newFormFAQ.ShowDialog();
+        }
+
+        private void AboutDeveloperToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormAboutDev newFormAboutDev = new FormAboutDev()
+            {
+                //center the new form in the middle of the old one
+                StartPosition = FormStartPosition.CenterParent
+            };
+            newFormAboutDev.ShowDialog();
+        }
     }
 }

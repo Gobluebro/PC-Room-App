@@ -48,26 +48,44 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormAboutDev.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAboutDev.Designer.cs">
+      <DependentUpon>FormAboutDev.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormFAQ.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormFAQ.Designer.cs">
+      <DependentUpon>FormFAQ.cs</DependentUpon>
+    </Compile>
     <Compile Include="Profile.cs" />
-    <Compile Include="Settings.cs">
+    <Compile Include="FormSettings.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Settings.Designer.cs">
-      <DependentUpon>Settings.cs</DependentUpon>
+    <Compile Include="FormSettings.Designer.cs">
+      <DependentUpon>FormSettings.cs</DependentUpon>
     </Compile>
-    <Compile Include="NewProfile.cs">
+    <Compile Include="FormNewProfile.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="NewProfile.Designer.cs">
-      <DependentUpon>NewProfile.cs</DependentUpon>
+    <Compile Include="FormNewProfile.Designer.cs">
+      <DependentUpon>FormNewProfile.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Settings.resx">
-      <DependentUpon>Settings.cs</DependentUpon>
+    <EmbeddedResource Include="FormAboutDev.resx">
+      <DependentUpon>FormAboutDev.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="NewProfile.resx">
-      <DependentUpon>NewProfile.cs</DependentUpon>
+    <EmbeddedResource Include="FormFAQ.resx">
+      <DependentUpon>FormFAQ.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSettings.resx">
+      <DependentUpon>FormSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormNewProfile.resx">
+      <DependentUpon>FormNewProfile.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -77,6 +95,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -92,7 +111,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Images\" />
+    <None Include="Images\14102413.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\GitHub-Mark.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
