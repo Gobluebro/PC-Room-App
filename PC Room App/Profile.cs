@@ -12,8 +12,8 @@ namespace PC_Room_App
         public bool preferredProfile { get; set; }
         public string WoWPath { get; set; }
         public string WoWAddonsPath{ get; set; }
-        public string BnetAppPath { get; set; }
-        public string BnetAppServer { get; set; }
-        public string BnetAppLanguage { get; set; }
+        public string BlizzAppPath { get; set; }
+        public string BlizzAppServer { get; set; }
+        public string BlizzAppLanguage { get; set; }
     }
 }

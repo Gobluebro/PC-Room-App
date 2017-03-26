@@ -34,28 +34,28 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txtProfileName = new System.Windows.Forms.TextBox();
             this.txtWoWPath = new System.Windows.Forms.TextBox();
-            this.txtBNAppPath = new System.Windows.Forms.TextBox();
+            this.txtBlizzAppPath = new System.Windows.Forms.TextBox();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
             this.btnBrowseWoW = new System.Windows.Forms.Button();
-            this.btnBrowseOW = new System.Windows.Forms.Button();
+            this.btnBrowseBlizzApp = new System.Windows.Forms.Button();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.chkWOW = new System.Windows.Forms.CheckBox();
-            this.chkBnetApp = new System.Windows.Forms.CheckBox();
+            this.chkBlizzApp = new System.Windows.Forms.CheckBox();
             this.grpboxWOW = new System.Windows.Forms.GroupBox();
             this.btnWOWAddonsLoc = new System.Windows.Forms.Button();
             this.txtAddonsPath = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.grpboxOW = new System.Windows.Forms.GroupBox();
-            this.cbnOWLang = new System.Windows.Forms.ComboBox();
+            this.grpboxBlizzApp = new System.Windows.Forms.GroupBox();
+            this.cbnBlizzAppLang = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.lblOWError = new System.Windows.Forms.Label();
+            this.lblBlizzAppError = new System.Windows.Forms.Label();
             this.lblWoWError = new System.Windows.Forms.Label();
             this.lblNameError = new System.Windows.Forms.Label();
             this.lblChkboxError = new System.Windows.Forms.Label();
             this.chkPrefProf = new System.Windows.Forms.CheckBox();
             this.grpboxWOW.SuspendLayout();
-            this.grpboxOW.SuspendLayout();
+            this.grpboxBlizzApp.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -81,9 +81,9 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(65, 25);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(152, 20);
+            this.label3.Size = new System.Drawing.Size(139, 20);
             this.label3.TabIndex = 2;
-            this.label3.Text = "Battle.net App Path:";
+            this.label3.Text = "Blizzard App Path:";
             // 
             // txtProfileName
             // 
@@ -101,14 +101,14 @@
             this.txtWoWPath.Size = new System.Drawing.Size(279, 26);
             this.txtWoWPath.TabIndex = 4;
             // 
-            // txtBNAppPath
+            // txtBlizzAppPath
             // 
-            this.txtBNAppPath.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.txtBNAppPath.Location = new System.Drawing.Point(239, 22);
-            this.txtBNAppPath.Name = "txtBNAppPath";
-            this.txtBNAppPath.ReadOnly = true;
-            this.txtBNAppPath.Size = new System.Drawing.Size(279, 26);
-            this.txtBNAppPath.TabIndex = 5;
+            this.txtBlizzAppPath.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.txtBlizzAppPath.Location = new System.Drawing.Point(239, 22);
+            this.txtBlizzAppPath.Name = "txtBlizzAppPath";
+            this.txtBlizzAppPath.ReadOnly = true;
+            this.txtBlizzAppPath.Size = new System.Drawing.Size(279, 26);
+            this.txtBlizzAppPath.TabIndex = 5;
             // 
             // btnSave
             // 
@@ -118,7 +118,7 @@
             this.btnSave.TabIndex = 6;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            this.btnSave.Click += new System.EventHandler(this.BtnSave_Click);
             // 
             // btnExit
             // 
@@ -128,7 +128,7 @@
             this.btnExit.TabIndex = 7;
             this.btnExit.Text = "Exit";
             this.btnExit.UseVisualStyleBackColor = true;
-            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
+            this.btnExit.Click += new System.EventHandler(this.BtnExit_Click);
             // 
             // btnBrowseWoW
             // 
@@ -139,18 +139,18 @@
             this.btnBrowseWoW.Text = "...";
             this.btnBrowseWoW.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnBrowseWoW.UseVisualStyleBackColor = true;
-            this.btnBrowseWoW.Click += new System.EventHandler(this.btnBrowseWoW_Click);
+            this.btnBrowseWoW.Click += new System.EventHandler(this.BtnBrowseWoW_Click);
             // 
-            // btnBrowseOW
+            // btnBrowseBlizzApp
             // 
-            this.btnBrowseOW.Location = new System.Drawing.Point(524, 19);
-            this.btnBrowseOW.Name = "btnBrowseOW";
-            this.btnBrowseOW.Size = new System.Drawing.Size(41, 35);
-            this.btnBrowseOW.TabIndex = 9;
-            this.btnBrowseOW.Text = "...";
-            this.btnBrowseOW.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnBrowseOW.UseVisualStyleBackColor = true;
-            this.btnBrowseOW.Click += new System.EventHandler(this.btnBrowseOW_Click);
+            this.btnBrowseBlizzApp.Location = new System.Drawing.Point(524, 19);
+            this.btnBrowseBlizzApp.Name = "btnBrowseBlizzApp";
+            this.btnBrowseBlizzApp.Size = new System.Drawing.Size(41, 35);
+            this.btnBrowseBlizzApp.TabIndex = 9;
+            this.btnBrowseBlizzApp.Text = "...";
+            this.btnBrowseBlizzApp.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnBrowseBlizzApp.UseVisualStyleBackColor = true;
+            this.btnBrowseBlizzApp.Click += new System.EventHandler(this.BtnBrowseOW_Click);
             // 
             // chkWOW
             // 
@@ -161,18 +161,18 @@
             this.chkWOW.TabIndex = 10;
             this.chkWOW.Text = "World of Warcraft";
             this.chkWOW.UseVisualStyleBackColor = true;
-            this.chkWOW.CheckedChanged += new System.EventHandler(this.chkWOW_CheckedChanged);
+            this.chkWOW.CheckedChanged += new System.EventHandler(this.ChkWOW_CheckedChanged);
             // 
-            // chkBnetApp
+            // chkBlizzApp
             // 
-            this.chkBnetApp.AutoSize = true;
-            this.chkBnetApp.Location = new System.Drawing.Point(442, 63);
-            this.chkBnetApp.Name = "chkBnetApp";
-            this.chkBnetApp.Size = new System.Drawing.Size(139, 24);
-            this.chkBnetApp.TabIndex = 11;
-            this.chkBnetApp.Text = "Battle.Net App";
-            this.chkBnetApp.UseVisualStyleBackColor = true;
-            this.chkBnetApp.CheckedChanged += new System.EventHandler(this.chkBnetApp_CheckedChanged);
+            this.chkBlizzApp.AutoSize = true;
+            this.chkBlizzApp.Location = new System.Drawing.Point(442, 63);
+            this.chkBlizzApp.Name = "chkBlizzApp";
+            this.chkBlizzApp.Size = new System.Drawing.Size(124, 24);
+            this.chkBlizzApp.TabIndex = 11;
+            this.chkBlizzApp.Text = "Blizzard App";
+            this.chkBlizzApp.UseVisualStyleBackColor = true;
+            this.chkBlizzApp.CheckedChanged += new System.EventHandler(this.ChkBlizzApp_CheckedChanged);
             // 
             // grpboxWOW
             // 
@@ -199,7 +199,7 @@
             this.btnWOWAddonsLoc.Text = "...";
             this.btnWOWAddonsLoc.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnWOWAddonsLoc.UseVisualStyleBackColor = true;
-            this.btnWOWAddonsLoc.Click += new System.EventHandler(this.btnWOWAddonsLoc_Click);
+            this.btnWOWAddonsLoc.Click += new System.EventHandler(this.BtnWOWAddonsLoc_Click);
             // 
             // txtAddonsPath
             // 
@@ -219,31 +219,31 @@
             this.label4.TabIndex = 9;
             this.label4.Text = "Addons Path:";
             // 
-            // grpboxOW
+            // grpboxBlizzApp
             // 
-            this.grpboxOW.Controls.Add(this.cbnOWLang);
-            this.grpboxOW.Controls.Add(this.label5);
-            this.grpboxOW.Controls.Add(this.btnBrowseOW);
-            this.grpboxOW.Controls.Add(this.txtBNAppPath);
-            this.grpboxOW.Controls.Add(this.label3);
-            this.grpboxOW.Location = new System.Drawing.Point(12, 197);
-            this.grpboxOW.Name = "grpboxOW";
-            this.grpboxOW.Size = new System.Drawing.Size(575, 97);
-            this.grpboxOW.TabIndex = 13;
-            this.grpboxOW.TabStop = false;
-            this.grpboxOW.Text = "Battle.net App Information";
-            this.grpboxOW.Visible = false;
+            this.grpboxBlizzApp.Controls.Add(this.cbnBlizzAppLang);
+            this.grpboxBlizzApp.Controls.Add(this.label5);
+            this.grpboxBlizzApp.Controls.Add(this.btnBrowseBlizzApp);
+            this.grpboxBlizzApp.Controls.Add(this.txtBlizzAppPath);
+            this.grpboxBlizzApp.Controls.Add(this.label3);
+            this.grpboxBlizzApp.Location = new System.Drawing.Point(12, 197);
+            this.grpboxBlizzApp.Name = "grpboxBlizzApp";
+            this.grpboxBlizzApp.Size = new System.Drawing.Size(575, 97);
+            this.grpboxBlizzApp.TabIndex = 13;
+            this.grpboxBlizzApp.TabStop = false;
+            this.grpboxBlizzApp.Text = "Blizzard App Information";
+            this.grpboxBlizzApp.Visible = false;
             // 
-            // cbnOWLang
+            // cbnBlizzAppLang
             // 
-            this.cbnOWLang.FormattingEnabled = true;
-            this.cbnOWLang.Items.AddRange(new object[] {
+            this.cbnBlizzAppLang.FormattingEnabled = true;
+            this.cbnBlizzAppLang.Items.AddRange(new object[] {
             "English",
             "한국어"});
-            this.cbnOWLang.Location = new System.Drawing.Point(239, 54);
-            this.cbnOWLang.Name = "cbnOWLang";
-            this.cbnOWLang.Size = new System.Drawing.Size(279, 28);
-            this.cbnOWLang.TabIndex = 11;
+            this.cbnBlizzAppLang.Location = new System.Drawing.Point(239, 54);
+            this.cbnBlizzAppLang.Name = "cbnBlizzAppLang";
+            this.cbnBlizzAppLang.Size = new System.Drawing.Size(279, 28);
+            this.cbnBlizzAppLang.TabIndex = 11;
             // 
             // label5
             // 
@@ -254,16 +254,16 @@
             this.label5.TabIndex = 10;
             this.label5.Text = "Language:";
             // 
-            // lblOWError
+            // lblBlizzAppError
             // 
-            this.lblOWError.AutoSize = true;
-            this.lblOWError.ForeColor = System.Drawing.Color.Red;
-            this.lblOWError.Location = new System.Drawing.Point(156, 350);
-            this.lblOWError.Name = "lblOWError";
-            this.lblOWError.Size = new System.Drawing.Size(316, 20);
-            this.lblOWError.TabIndex = 12;
-            this.lblOWError.Text = "Please fill in every textbox for Battle.net App";
-            this.lblOWError.Visible = false;
+            this.lblBlizzAppError.AutoSize = true;
+            this.lblBlizzAppError.ForeColor = System.Drawing.Color.Red;
+            this.lblBlizzAppError.Location = new System.Drawing.Point(156, 350);
+            this.lblBlizzAppError.Name = "lblBlizzAppError";
+            this.lblBlizzAppError.Size = new System.Drawing.Size(303, 20);
+            this.lblBlizzAppError.TabIndex = 12;
+            this.lblBlizzAppError.Text = "Please fill in every textbox for Blizzard App";
+            this.lblBlizzAppError.Visible = false;
             // 
             // lblWoWError
             // 
@@ -316,11 +316,11 @@
             this.Controls.Add(this.chkPrefProf);
             this.Controls.Add(this.lblChkboxError);
             this.Controls.Add(this.lblNameError);
-            this.Controls.Add(this.lblOWError);
+            this.Controls.Add(this.lblBlizzAppError);
             this.Controls.Add(this.lblWoWError);
-            this.Controls.Add(this.grpboxOW);
+            this.Controls.Add(this.grpboxBlizzApp);
             this.Controls.Add(this.grpboxWOW);
-            this.Controls.Add(this.chkBnetApp);
+            this.Controls.Add(this.chkBlizzApp);
             this.Controls.Add(this.chkWOW);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnSave);
@@ -331,11 +331,11 @@
             this.MinimumSize = new System.Drawing.Size(610, 553);
             this.Name = "formCreateNewProfile";
             this.Text = "Create a New Profile";
-            this.Load += new System.EventHandler(this.formCreateNewProfile_Load);
+            this.Load += new System.EventHandler(this.FormCreateNewProfile_Load);
             this.grpboxWOW.ResumeLayout(false);
             this.grpboxWOW.PerformLayout();
-            this.grpboxOW.ResumeLayout(false);
-            this.grpboxOW.PerformLayout();
+            this.grpboxBlizzApp.ResumeLayout(false);
+            this.grpboxBlizzApp.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -348,22 +348,22 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtProfileName;
         private System.Windows.Forms.TextBox txtWoWPath;
-        private System.Windows.Forms.TextBox txtBNAppPath;
+        private System.Windows.Forms.TextBox txtBlizzAppPath;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.Button btnBrowseWoW;
-        private System.Windows.Forms.Button btnBrowseOW;
+        private System.Windows.Forms.Button btnBrowseBlizzApp;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
         private System.Windows.Forms.CheckBox chkWOW;
-        private System.Windows.Forms.CheckBox chkBnetApp;
+        private System.Windows.Forms.CheckBox chkBlizzApp;
         private System.Windows.Forms.GroupBox grpboxWOW;
-        private System.Windows.Forms.GroupBox grpboxOW;
+        private System.Windows.Forms.GroupBox grpboxBlizzApp;
         private System.Windows.Forms.Button btnWOWAddonsLoc;
         private System.Windows.Forms.TextBox txtAddonsPath;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox cbnOWLang;
+        private System.Windows.Forms.ComboBox cbnBlizzAppLang;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label lblOWError;
+        private System.Windows.Forms.Label lblBlizzAppError;
         private System.Windows.Forms.Label lblWoWError;
         private System.Windows.Forms.Label lblNameError;
         private System.Windows.Forms.Label lblChkboxError;

@@ -30,8 +30,8 @@ namespace PC_Room_App
             bool testPrefProf = false;
             string testWoWPath = "";
             string testAddonPath = "";
-            string testBnetAppPath = "";
-            string testBnetAppLang = "";
+            string testBlizzAppPath = "";
+            string testBlizzAppLang = "";
 
             foreach (string lines in readText)
             {
@@ -55,11 +55,11 @@ namespace PC_Room_App
                         case "WoW Addons Path":
                             testAddonPath = splitString[1];
                             break;
-                        case "Battle.net App Path":
-                            testBnetAppPath = splitString[1];
+                        case "Blizzard App Path":
+                            testBlizzAppPath = splitString[1];
                             break;
-                        case "Battle.net App Language":
-                            testBnetAppLang = splitString[1];
+                        case "Blizzard App Language":
+                            testBlizzAppLang = splitString[1];
                             break;
                     }
                 }
@@ -70,8 +70,8 @@ namespace PC_Room_App
                         preferredProfile = testPrefProf,
                         WoWPath = testWoWPath,
                         WoWAddonsPath = testAddonPath,
-                        BnetAppPath = testBnetAppPath,
-                        BnetAppLanguage = testBnetAppLang
+                        BlizzAppPath = testBlizzAppPath,
+                        BlizzAppLanguage = testBlizzAppLang
                     });
                     if (dictProfiles[profileCounter].preferredProfile)
                     {
@@ -127,12 +127,12 @@ namespace PC_Room_App
             startBattleNetApp.WindowStyle = ProcessWindowStyle.Normal;
             string args = "";
             //only support two languages currently TODO: more languages
-            if (currentProfile.BnetAppLanguage == "English")
+            if (currentProfile.BlizzAppLanguage == "English")
             {
                 //en = english US = USA
                 args = " --setlanguage=enUS";
             }
-            else if(currentProfile.BnetAppLanguage == "한국어")
+            else if(currentProfile.BlizzAppLanguage == "한국어")
             {
                 //ko = korean kr = korea
                 //kind of irrelevant since korean PCrooms would just have korean as the standard anyway

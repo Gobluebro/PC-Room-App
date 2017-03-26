@@ -17,8 +17,8 @@ namespace PC_Room_App
         #region multiple calls methods
         private void FormChange()
         {
-            FormSettings frm = new FormSettings();
-            frm.Show();
+            FormSettings frmSettings = new FormSettings();
+            frmSettings.Show();
             Visible = false;
         }
         private void FolderLocate(string location)
@@ -41,11 +41,11 @@ namespace PC_Room_App
             }
             else 
             {
-                //location should be "OW"
+                //location should be "Blizz"
                 DialogResult result = folderBrowserDialog1.ShowDialog();
                 if (result == DialogResult.OK)
                 {
-                    txtBNAppPath.Text = folderBrowserDialog1.SelectedPath;
+                    txtBlizzAppPath.Text = folderBrowserDialog1.SelectedPath;
                 }
             }
         }
@@ -56,12 +56,12 @@ namespace PC_Room_App
             InitializeComponent();
         }
 
-        private void btnExit_Click(object sender, EventArgs e)
+        private void BtnExit_Click(object sender, EventArgs e)
         {
             FormChange();
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
+        private void BtnSave_Click(object sender, EventArgs e)
         {
             #region error checking
             if (txtProfileName.Text == "")
@@ -69,7 +69,7 @@ namespace PC_Room_App
                 //pretty skeptical on only this because users could just write spaces
                 lblNameError.Visible = true;
             }
-            else if (!chkWOW.Checked && !chkBnetApp.Checked)
+            else if (!chkWOW.Checked && !chkBlizzApp.Checked)
             {
                 //because what's the point of just saving a profile with only a name
                 lblChkboxError.Visible = true;
@@ -81,12 +81,12 @@ namespace PC_Room_App
                 lblChkboxError.Visible = false;
                 lblWoWError.Visible = true;
             }
-            else if (chkBnetApp.Checked && (txtBNAppPath.Text == "" || cbnOWLang.Text == ""))
+            else if (chkBlizzApp.Checked && (txtBlizzAppPath.Text == "" || cbnBlizzAppLang.Text == ""))
             {
                 //error checking if boxes are filled in for overwatch
                 //hide the checkbox error since we obviously have a boxed checked
                 lblChkboxError.Visible = false;
-                lblOWError.Visible = true;
+                lblBlizzAppError.Visible = true;
             }
             #endregion
             else
@@ -116,15 +116,15 @@ namespace PC_Room_App
                         writer.WriteLine("WoW Path= ");
                         writer.WriteLine("WoW Addons Path= ");
                     }
-                    if (chkBnetApp.Checked)
+                    if (chkBlizzApp.Checked)
                     {
-                        writer.WriteLine("Battle.net App Path=" + txtBNAppPath.Text);
-                        writer.WriteLine("Battle.net App Language=" + cbnOWLang.Text);
+                        writer.WriteLine("Blizzard App Path=" + txtBlizzAppPath.Text);
+                        writer.WriteLine("Blizzard App Language=" + cbnBlizzAppLang.Text);
                     }
                     else
                     {
-                        writer.WriteLine("Battle.net App Path= ");
-                        writer.WriteLine("Battle.net App Language= ");
+                        writer.WriteLine("Blizzard App Path= ");
+                        writer.WriteLine("Blizzard App Language= ");
                     }
                     writer.WriteLine(";");
                 }
@@ -133,21 +133,21 @@ namespace PC_Room_App
         }
 
         #region file system browse calls
-        private void btnBrowseWoW_Click(object sender, EventArgs e)
+        private void BtnBrowseWoW_Click(object sender, EventArgs e)
         {
             FolderLocate("WoW");
         }
-        private void btnWOWAddonsLoc_Click(object sender, EventArgs e)
+        private void BtnWOWAddonsLoc_Click(object sender, EventArgs e)
         {
             FolderLocate("AddOn");
         }
-        private void btnBrowseOW_Click(object sender, EventArgs e)
+        private void BtnBrowseOW_Click(object sender, EventArgs e)
         {
-            FolderLocate("OW");
+            FolderLocate("Blizz");
         }
         #endregion
 
-        private void chkWOW_CheckedChanged(object sender, EventArgs e)
+        private void ChkWOW_CheckedChanged(object sender, EventArgs e)
         {
             if (chkWOW.Checked)
             {
@@ -159,19 +159,19 @@ namespace PC_Room_App
             }
         }
 
-        private void chkBnetApp_CheckedChanged(object sender, EventArgs e)
+        private void ChkBlizzApp_CheckedChanged(object sender, EventArgs e)
         {
-            if (chkBnetApp.Checked)
+            if (chkBlizzApp.Checked)
             {
-                grpboxOW.Visible = true;
+                grpboxBlizzApp.Visible = true;
             }
             else
             {
-                grpboxOW.Visible = false;
+                grpboxBlizzApp.Visible = false;
             }
         }
 
-        private void formCreateNewProfile_Load(object sender, EventArgs e)
+        private void FormCreateNewProfile_Load(object sender, EventArgs e)
         {
             //if cache file doesn't exist.
             if (!(File.Exists(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\Cache.txt"))){
