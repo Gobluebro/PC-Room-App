@@ -38,8 +38,7 @@
             this.fAQToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutDeveloperToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnChangeSettings = new System.Windows.Forms.Button();
-            this.lblFiles = new System.Windows.Forms.Label();
-            this.lblSettings = new System.Windows.Forms.Label();
+            this.lblConfirmation = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.btnSaveAddons = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
@@ -69,14 +68,14 @@
             // newProfile
             // 
             this.newProfile.Name = "newProfile";
-            this.newProfile.Size = new System.Drawing.Size(141, 30);
+            this.newProfile.Size = new System.Drawing.Size(211, 30);
             this.newProfile.Text = "New";
             this.newProfile.Click += new System.EventHandler(this.NewProfile_Click);
             // 
             // openProfile
             // 
             this.openProfile.Name = "openProfile";
-            this.openProfile.Size = new System.Drawing.Size(141, 30);
+            this.openProfile.Size = new System.Drawing.Size(211, 30);
             this.openProfile.Text = "Open";
             // 
             // helpToolStripMenuItem
@@ -112,27 +111,16 @@
             this.btnChangeSettings.UseVisualStyleBackColor = true;
             this.btnChangeSettings.Click += new System.EventHandler(this.BtnChangeSettings_Click);
             // 
-            // lblFiles
+            // lblConfirmation
             // 
-            this.lblFiles.AutoSize = true;
-            this.lblFiles.Location = new System.Drawing.Point(269, 389);
-            this.lblFiles.Name = "lblFiles";
-            this.lblFiles.Size = new System.Drawing.Size(171, 20);
-            this.lblFiles.TabIndex = 4;
-            this.lblFiles.Text = "Files have been copied";
-            this.lblFiles.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lblFiles.Visible = false;
-            // 
-            // lblSettings
-            // 
-            this.lblSettings.AutoSize = true;
-            this.lblSettings.Location = new System.Drawing.Point(256, 421);
-            this.lblSettings.Name = "lblSettings";
-            this.lblSettings.Size = new System.Drawing.Size(212, 20);
-            this.lblSettings.TabIndex = 5;
-            this.lblSettings.Text = "Settings have been changed";
-            this.lblSettings.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lblSettings.Visible = false;
+            this.lblConfirmation.AutoSize = true;
+            this.lblConfirmation.Location = new System.Drawing.Point(269, 389);
+            this.lblConfirmation.Name = "lblConfirmation";
+            this.lblConfirmation.Size = new System.Drawing.Size(171, 20);
+            this.lblConfirmation.TabIndex = 4;
+            this.lblConfirmation.Text = "Files have been copied";
+            this.lblConfirmation.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblConfirmation.Visible = false;
             // 
             // label1
             // 
@@ -162,8 +150,7 @@
             this.ClientSize = new System.Drawing.Size(738, 546);
             this.Controls.Add(this.btnSaveAddons);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.lblSettings);
-            this.Controls.Add(this.lblFiles);
+            this.Controls.Add(this.lblConfirmation);
             this.Controls.Add(this.btnChangeSettings);
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -191,8 +178,7 @@
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem fAQToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutDeveloperToolStripMenuItem;
-        private System.Windows.Forms.Label lblFiles;
-        private System.Windows.Forms.Label lblSettings;
+        private System.Windows.Forms.Label lblConfirmation;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnSaveAddons;
     }

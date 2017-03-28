@@ -1,12 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.VisualBasic.FileIO;
 using System.Reflection;
@@ -21,6 +15,12 @@ namespace PC_Room_App
         int profileCounter = 0;
         Profile currentProfile = new Profile();
 
+        public FormSettings()
+        {
+            InitializeComponent();
+        }
+
+        #region On Form load
         private void LoadProfile()
         {
             string cachePath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\Cache.txt";
@@ -76,16 +76,11 @@ namespace PC_Room_App
                     if (dictProfiles[profileCounter].preferredProfile)
                     {
                         currentProfile = dictProfiles[profileCounter];
-                        openProfile.Text = dictProfiles[profileCounter].profileName;
+                        openProfile.Text = "Current Profile: " + dictProfiles[profileCounter].profileName;
                     }
                     profileCounter++;
                 }
             }
-        }
-
-        public FormSettings()
-        {
-            InitializeComponent();
         }
 
         private void AddProfilesToMenu()
@@ -96,10 +91,12 @@ namespace PC_Room_App
             for (i = 0; i < profileCounter; i++)
             {
                 ToolStripMenuItem item = new ToolStripMenuItem();
-                item = new ToolStripMenuItem();
-                item.Name = "profile" + i.ToString();
-                item.Text = dictProfiles[i].profileName;
-                item.Tag = i;
+                item = new ToolStripMenuItem()
+                {
+                    Name = "profile" + i.ToString(),
+                    Text = dictProfiles[i].profileName,
+                    Tag = i
+                };
                 item.Click += new EventHandler(MenuItemClickHandler);
                 listItems.Add(item);
             }
@@ -114,39 +111,7 @@ namespace PC_Room_App
             ToolStripMenuItem clickedItem = (ToolStripMenuItem)sender;
             int currentProfileNumber = Convert.ToInt32(clickedItem.Tag);
             currentProfile = dictProfiles[currentProfileNumber];
-            openProfile.Text = currentProfile.profileName;
-        }
-
-        private void LaunchBattleNetApp()
-        {        
-            // Use ProcessStartInfo class.
-            ProcessStartInfo startBattleNetApp = new ProcessStartInfo();
-            startBattleNetApp.CreateNoWindow = true;
-            startBattleNetApp.UseShellExecute = false;
-            startBattleNetApp.FileName = @"C:\Program Files (x86)\Battle.net\Battle.net.exe";
-            startBattleNetApp.WindowStyle = ProcessWindowStyle.Normal;
-            string args = "";
-            //only support two languages currently TODO: more languages
-            if (currentProfile.BlizzAppLanguage == "English")
-            {
-                //en = english US = USA
-                args = " --setlanguage=enUS";
-            }
-            else if(currentProfile.BlizzAppLanguage == "한국어")
-            {
-                //ko = korean kr = korea
-                //kind of irrelevant since korean PCrooms would just have korean as the standard anyway
-                args = " --setlanguage=koKR";
-            }
-            startBattleNetApp.Arguments = args;
-            try
-            {
-                Process.Start(startBattleNetApp);
-            }
-            catch
-            {
-                MessageBox.Show("Program couldn't be started.");
-            }
+            openProfile.Text = "Current Profile: " + currentProfile.profileName;
         }
 
         private void Settings_Load(object sender, EventArgs e)
@@ -164,6 +129,42 @@ namespace PC_Room_App
             }
             
         }
+        #endregion
+
+        private void LaunchBattleNetApp()
+        {
+            string args = "";
+            //only support two languages currently TODO: more languages
+            if (currentProfile.BlizzAppLanguage == "English")
+            {
+                //en = english US = USA
+                args = " --setlanguage=enUS";
+            }
+            else if (currentProfile.BlizzAppLanguage == "한국어")
+            {
+                //ko = korean kr = korea
+                //kind of irrelevant since korean PCrooms would just have korean as the standard anyway
+                args = " --setlanguage=koKR";
+            }
+
+            // Use ProcessStartInfo class.
+            ProcessStartInfo startBlizzApp = new ProcessStartInfo()
+            {
+                CreateNoWindow = true,
+                UseShellExecute = false,
+                FileName = @"C:\Program Files (x86)\Battle.net\Battle.net.exe",
+                WindowStyle = ProcessWindowStyle.Normal,
+                Arguments = args
+            };
+            try
+            {
+                Process.Start(startBlizzApp);
+            }
+            catch
+            {
+                MessageBox.Show("Blizzard App couldn't be started.");
+            }
+        }
 
         private void BtnChangeSettings_Click(object sender, EventArgs e)
         {
@@ -172,10 +173,15 @@ namespace PC_Room_App
             FileSystem.CopyDirectory(currentProfile.WoWAddonsPath, currentProfile.WoWPath, true);
 
             //TODO: look into fading in and out(timers)
-            lblFiles.Text = "Addons -> WoW" + Environment.NewLine + "Files have been copied";
-            lblFiles.Visible = true;
+            lblConfirmation.Text = "Addons -> WoW" + Environment.NewLine + "Files have been copied";
+            lblConfirmation.Visible = true;
 
-            LaunchBattleNetApp();
+            //only launch it if blizz app is not open already
+            Process[] blizzApp = Process.GetProcessesByName("battle.net");
+            if (blizzApp.Length == 0)
+            {
+                LaunchBattleNetApp();
+            }
         }
 
         private void BtnSaveAddons_Click(object sender, EventArgs e)
@@ -187,8 +193,8 @@ namespace PC_Room_App
             {
                 case DialogResult.Yes:
                     FileSystem.CopyDirectory(currentProfile.WoWPath, currentProfile.WoWAddonsPath, true);
-                    lblFiles.Text = "WoW -> Addons" + Environment.NewLine + "Files have been copied";
-                    lblFiles.Visible = true;
+                    lblConfirmation.Text = "WoW -> Addons" + Environment.NewLine + "Files have been copied";
+                    lblConfirmation.Visible = true;
                     break;
                 /*case DialogResult.No:
                     //nothing
