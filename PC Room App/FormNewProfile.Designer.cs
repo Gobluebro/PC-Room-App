@@ -49,10 +49,7 @@
             this.grpboxBlizzApp = new System.Windows.Forms.GroupBox();
             this.cbnBlizzAppLang = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.lblBlizzAppError = new System.Windows.Forms.Label();
-            this.lblWoWError = new System.Windows.Forms.Label();
-            this.lblNameError = new System.Windows.Forms.Label();
-            this.lblChkboxError = new System.Windows.Forms.Label();
+            this.lblShowError = new System.Windows.Forms.Label();
             this.chkPrefProf = new System.Windows.Forms.CheckBox();
             this.grpboxWOW.SuspendLayout();
             this.grpboxBlizzApp.SuspendLayout();
@@ -254,49 +251,16 @@
             this.label5.TabIndex = 10;
             this.label5.Text = "Language:";
             // 
-            // lblBlizzAppError
+            // lblShowError
             // 
-            this.lblBlizzAppError.AutoSize = true;
-            this.lblBlizzAppError.ForeColor = System.Drawing.Color.Red;
-            this.lblBlizzAppError.Location = new System.Drawing.Point(156, 350);
-            this.lblBlizzAppError.Name = "lblBlizzAppError";
-            this.lblBlizzAppError.Size = new System.Drawing.Size(303, 20);
-            this.lblBlizzAppError.TabIndex = 12;
-            this.lblBlizzAppError.Text = "Please fill in every textbox for Blizzard App";
-            this.lblBlizzAppError.Visible = false;
-            // 
-            // lblWoWError
-            // 
-            this.lblWoWError.AutoSize = true;
-            this.lblWoWError.ForeColor = System.Drawing.Color.Red;
-            this.lblWoWError.Location = new System.Drawing.Point(144, 326);
-            this.lblWoWError.Name = "lblWoWError";
-            this.lblWoWError.Size = new System.Drawing.Size(338, 20);
-            this.lblWoWError.TabIndex = 13;
-            this.lblWoWError.Text = "Please fill in every textbox for World of Warcraft";
-            this.lblWoWError.Visible = false;
-            // 
-            // lblNameError
-            // 
-            this.lblNameError.AutoSize = true;
-            this.lblNameError.ForeColor = System.Drawing.Color.Red;
-            this.lblNameError.Location = new System.Drawing.Point(206, 371);
-            this.lblNameError.Name = "lblNameError";
-            this.lblNameError.Size = new System.Drawing.Size(201, 20);
-            this.lblNameError.TabIndex = 14;
-            this.lblNameError.Text = "Please fill in a Profille Name";
-            this.lblNameError.Visible = false;
-            // 
-            // lblChkboxError
-            // 
-            this.lblChkboxError.AutoSize = true;
-            this.lblChkboxError.ForeColor = System.Drawing.Color.Red;
-            this.lblChkboxError.Location = new System.Drawing.Point(187, 305);
-            this.lblChkboxError.Name = "lblChkboxError";
-            this.lblChkboxError.Size = new System.Drawing.Size(261, 20);
-            this.lblChkboxError.TabIndex = 15;
-            this.lblChkboxError.Text = "Please check at least one checkbox";
-            this.lblChkboxError.Visible = false;
+            this.lblShowError.AutoSize = true;
+            this.lblShowError.ForeColor = System.Drawing.Color.Red;
+            this.lblShowError.Location = new System.Drawing.Point(171, 306);
+            this.lblShowError.Name = "lblShowError";
+            this.lblShowError.Size = new System.Drawing.Size(261, 20);
+            this.lblShowError.TabIndex = 15;
+            this.lblShowError.Text = "Please check at least one checkbox";
+            this.lblShowError.Visible = false;
             // 
             // chkPrefProf
             // 
@@ -314,10 +278,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(588, 497);
             this.Controls.Add(this.chkPrefProf);
-            this.Controls.Add(this.lblChkboxError);
-            this.Controls.Add(this.lblNameError);
-            this.Controls.Add(this.lblBlizzAppError);
-            this.Controls.Add(this.lblWoWError);
+            this.Controls.Add(this.lblShowError);
             this.Controls.Add(this.grpboxBlizzApp);
             this.Controls.Add(this.grpboxWOW);
             this.Controls.Add(this.chkBlizzApp);
@@ -330,6 +291,7 @@
             this.MaximumSize = new System.Drawing.Size(610, 553);
             this.MinimumSize = new System.Drawing.Size(610, 553);
             this.Name = "formCreateNewProfile";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Create a New Profile";
             this.Load += new System.EventHandler(this.FormCreateNewProfile_Load);
             this.grpboxWOW.ResumeLayout(false);
@@ -363,10 +325,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox cbnBlizzAppLang;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label lblBlizzAppError;
-        private System.Windows.Forms.Label lblWoWError;
-        private System.Windows.Forms.Label lblNameError;
-        private System.Windows.Forms.Label lblChkboxError;
+        private System.Windows.Forms.Label lblShowError;
         private System.Windows.Forms.CheckBox chkPrefProf;
     }
 }

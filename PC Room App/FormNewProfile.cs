@@ -1,13 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace PC_Room_App
@@ -19,8 +12,9 @@ namespace PC_Room_App
         {
             FormSettings frmSettings = new FormSettings();
             frmSettings.Show();
-            Visible = false;
+            Close();
         }
+
         private void FolderLocate(string location)
         {
             if (location == "WoW")
@@ -56,6 +50,11 @@ namespace PC_Room_App
             InitializeComponent();
         }
 
+        public bool CacheExists()
+        {
+            return File.Exists(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\Cache.txt");
+        }
+
         private void BtnExit_Click(object sender, EventArgs e)
         {
             FormChange();
@@ -67,31 +66,59 @@ namespace PC_Room_App
             if (txtProfileName.Text == "")
             {
                 //pretty skeptical on only this because users could just write spaces
-                lblNameError.Visible = true;
+                lblShowError.Text = "Please fill in a Profille Name";
+                lblShowError.Visible = true;
             }
             else if (!chkWOW.Checked && !chkBlizzApp.Checked)
             {
                 //because what's the point of just saving a profile with only a name
-                lblChkboxError.Visible = true;
+                lblShowError.Text = "Please check at least one checkbox";
+                lblShowError.Visible = true;
             }
             else if (chkWOW.Checked && (txtWoWPath.Text == "" || txtAddonsPath.Text == ""))
             {
                 //error checking if boxes are filled in for WoW
                 //hide the checkbox error since we obviously have a boxed checked
-                lblChkboxError.Visible = false;
-                lblWoWError.Visible = true;
+                lblShowError.Text = "Please fill in every textbox for World of Warcraft";
+                lblShowError.Visible = true;
             }
             else if (chkBlizzApp.Checked && (txtBlizzAppPath.Text == "" || cbnBlizzAppLang.Text == ""))
             {
                 //error checking if boxes are filled in for overwatch
                 //hide the checkbox error since we obviously have a boxed checked
-                lblChkboxError.Visible = false;
-                lblBlizzAppError.Visible = true;
+                lblShowError.Text = "Please fill in every textbox for Blizzard App";
+                lblShowError.Visible = true;
             }
             #endregion
             else
             {
-                //originally wanted to save this to a new profile but I won't use it so it's not needed.
+                lblShowError.Visible = false;
+                
+                //check if cache exists, then in the cache look if I have a prefferred profile
+                if (CacheExists())
+                {
+                    string[] lines = File.ReadAllLines("Cache.txt");
+                    using (StreamWriter replacer = new StreamWriter("Cache.txt"))
+                    {
+                        for(int i = 0; i< lines.Length; i++)
+                        {
+                            if (lines[i] == "Preferred Profile=1")
+                            {
+                                DialogResult dialogResult = MessageBox.Show("Do you want this profile to be preferred over \"" + lines[i - 1].Split('=')[1] + "\"?",
+                                    "Another Preferred Profile Exists", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+                                if (dialogResult == DialogResult.Yes)
+                                {
+                                    replacer.WriteLine("Preferred Profile=0");
+                                }
+                            }
+                            else
+                            {
+                                replacer.WriteLine(lines[i]);
+                            } 
+                        }
+                    }
+                }
+
 
                 //the opens the cache file and the bool allows me to append to the file (false would be to overwrite)
                 //in the case of the first time creates the file, in the case of the second time it appends (thank you whoever wrote this nice constructor)
@@ -173,8 +200,14 @@ namespace PC_Room_App
 
         private void FormCreateNewProfile_Load(object sender, EventArgs e)
         {
-            //if cache file doesn't exist.
-            if (!(File.Exists(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\Cache.txt"))){
+            //profile will always be preferred if it's the only one 
+            if (CacheExists())
+            {
+                chkPrefProf.Checked = false;
+                chkPrefProf.Enabled = true;
+            }
+            else
+            {
                 chkPrefProf.Checked = true;
                 chkPrefProf.Enabled = false;
             }

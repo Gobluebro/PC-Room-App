@@ -189,16 +189,11 @@ namespace PC_Room_App
             //todo look into centering message box stuff, looks bad atm
             DialogResult dialogResult = MessageBox.Show("If you did not push the Change Settings button during your session then you may have some issues." + Environment.NewLine + "A backup of your addons is recommended",
                 "Are you sure want to override your Addons? ", MessageBoxButtons.YesNo);
-            switch (dialogResult)
+            if (dialogResult == DialogResult.Yes)
             {
-                case DialogResult.Yes:
                     FileSystem.CopyDirectory(currentProfile.WoWPath, currentProfile.WoWAddonsPath, true);
                     lblConfirmation.Text = "WoW -> Addons" + Environment.NewLine + "Files have been copied";
                     lblConfirmation.Visible = true;
-                    break;
-                /*case DialogResult.No:
-                    //nothing
-                    break;*/
             }
             
         }
