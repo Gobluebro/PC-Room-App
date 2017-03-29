@@ -202,7 +202,7 @@ namespace PC_Room_App
         {
             formCreateNewProfile formCreateProfile = new formCreateNewProfile();
             formCreateProfile.Show();
-            Visible = false;
+            Hide();
         }
 
         private void FAQToolStripMenuItem_Click(object sender, EventArgs e)

@@ -21,13 +21,20 @@ namespace PC_Room_App
             if (!existingProfile)
             {
                 MessageBox.Show("Please Create a Profile", "No Existing Profile.");
-                Application.Run(new formCreateNewProfile());
+                formCreateNewProfile formCreateProfile = new formCreateNewProfile();
+                formCreateProfile.Show();
             }
             else
             {
-                Application.Run(new FormSettings());
+                FormSettings frmSettings = new FormSettings();
+                frmSettings.Show();
+                frmSettings.Closed += new EventHandler(ApplicationClose);
             }
-            
+            Application.Run();
+        }
+        private static void ApplicationClose(object sender, System.EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

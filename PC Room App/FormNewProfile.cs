@@ -12,7 +12,13 @@ namespace PC_Room_App
         {
             FormSettings frmSettings = new FormSettings();
             frmSettings.Show();
-            Close();
+            frmSettings.Closed += new EventHandler(ApplicationClose);
+            Hide();
+        }
+
+        private void ApplicationClose(object sender, System.EventArgs e)
+        {
+            Application.Exit();
         }
 
         private void FolderLocate(string location)
