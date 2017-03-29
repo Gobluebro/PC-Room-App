@@ -1,6 +1,6 @@
 ﻿namespace PC_Room_App
 {
-    partial class formCreateNewProfile
+    partial class FormNewProfile
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(formCreateNewProfile));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormNewProfile));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -293,7 +293,8 @@
             this.Name = "formCreateNewProfile";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Create a New Profile";
-            this.Load += new System.EventHandler(this.FormCreateNewProfile_Load);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormNewProfile_FormClosing);
+            this.Load += new System.EventHandler(this.FormNewProfile_Load);
             this.grpboxWOW.ResumeLayout(false);
             this.grpboxWOW.PerformLayout();
             this.grpboxBlizzApp.ResumeLayout(false);

@@ -125,7 +125,7 @@ namespace PC_Room_App
             else
             {
                 MessageBox.Show("Please Create a Profile", "No Existing Profile.");
-                Application.Run(new formCreateNewProfile());
+                Application.Run(new FormNewProfile());
             }
             
         }
@@ -200,7 +200,7 @@ namespace PC_Room_App
 
         private void NewProfile_Click(object sender, EventArgs e)
         {
-            formCreateNewProfile formCreateProfile = new formCreateNewProfile();
+            FormNewProfile formCreateProfile = new FormNewProfile();
             formCreateProfile.Show();
             Hide();
         }
@@ -223,6 +223,11 @@ namespace PC_Room_App
                 StartPosition = FormStartPosition.CenterParent
             };
             newFormAboutDev.ShowDialog();
+        }
+
+        private void FormSettings_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

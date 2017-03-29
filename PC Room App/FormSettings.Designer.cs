@@ -33,6 +33,7 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.profileMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.newProfile = new System.Windows.Forms.ToolStripMenuItem();
+            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openProfile = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fAQToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -41,7 +42,6 @@
             this.lblConfirmation = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.btnSaveAddons = new System.Windows.Forms.Button();
-            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -73,6 +73,12 @@
             this.newProfile.Size = new System.Drawing.Size(211, 30);
             this.newProfile.Text = "New";
             this.newProfile.Click += new System.EventHandler(this.NewProfile_Click);
+            // 
+            // editToolStripMenuItem
+            // 
+            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(211, 30);
+            this.editToolStripMenuItem.Text = "Edit";
             // 
             // openProfile
             // 
@@ -145,12 +151,6 @@
             this.btnSaveAddons.UseVisualStyleBackColor = true;
             this.btnSaveAddons.Click += new System.EventHandler(this.BtnSaveAddons_Click);
             // 
-            // editToolStripMenuItem
-            // 
-            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(211, 30);
-            this.editToolStripMenuItem.Text = "Edit";
-            // 
             // FormSettings
             // 
             this.AcceptButton = this.btnChangeSettings;
@@ -169,6 +169,7 @@
             this.Name = "FormSettings";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Choose which settings to load";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormSettings_FormClosing);
             this.Load += new System.EventHandler(this.Settings_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();

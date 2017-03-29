@@ -5,20 +5,14 @@ using System.Windows.Forms;
 
 namespace PC_Room_App
 {
-    public partial class formCreateNewProfile : Form
+    public partial class FormNewProfile : Form
     {
         #region multiple calls methods
         private void FormChange()
         {
             FormSettings frmSettings = new FormSettings();
             frmSettings.Show();
-            frmSettings.Closed += new EventHandler(ApplicationClose);
             Hide();
-        }
-
-        private void ApplicationClose(object sender, System.EventArgs e)
-        {
-            Application.Exit();
         }
 
         private void FolderLocate(string location)
@@ -51,7 +45,7 @@ namespace PC_Room_App
         }
         #endregion
 
-        public formCreateNewProfile()
+        public FormNewProfile()
         {
             InitializeComponent();
         }
@@ -204,7 +198,7 @@ namespace PC_Room_App
             }
         }
 
-        private void FormCreateNewProfile_Load(object sender, EventArgs e)
+        private void FormNewProfile_Load(object sender, EventArgs e)
         {
             //profile will always be preferred if it's the only one 
             if (CacheExists())
@@ -217,6 +211,11 @@ namespace PC_Room_App
                 chkPrefProf.Checked = true;
                 chkPrefProf.Enabled = false;
             }
+        }
+
+        private void FormNewProfile_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
