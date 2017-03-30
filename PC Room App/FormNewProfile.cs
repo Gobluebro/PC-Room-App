@@ -50,7 +50,7 @@ namespace PC_Room_App
             InitializeComponent();
         }
 
-        public bool CacheExists()
+        private bool CacheExists()
         {
             return File.Exists(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\Cache.txt");
         }
@@ -102,7 +102,7 @@ namespace PC_Room_App
                 lblShowError.Visible = false;
                 
                 //check if cache exists, then in the cache look if I have a prefferred profile
-                if (CacheExists())
+                if (CacheExists() && chkPrefProf.Checked)
                 {
                     string[] lines = File.ReadAllLines("Cache.txt");
                     using (StreamWriter replacer = new StreamWriter("Cache.txt"))
@@ -126,7 +126,6 @@ namespace PC_Room_App
                     }
                 }
 
-
                 //the opens the cache file and the bool allows me to append to the file (false would be to overwrite)
                 //in the case of the first time creates the file, in the case of the second time it appends (thank you whoever wrote this nice constructor)
                 using (StreamWriter writer = new StreamWriter("Cache.txt",true))
@@ -147,8 +146,8 @@ namespace PC_Room_App
                     }
                     else
                     {
-                        writer.WriteLine("WoW Path= ");
-                        writer.WriteLine("WoW Addons Path= ");
+                        writer.WriteLine("WoW Path=");
+                        writer.WriteLine("WoW Addons Path=");
                     }
                     if (chkBlizzApp.Checked)
                     {
@@ -157,8 +156,8 @@ namespace PC_Room_App
                     }
                     else
                     {
-                        writer.WriteLine("Blizzard App Path= ");
-                        writer.WriteLine("Blizzard App Language= ");
+                        writer.WriteLine("Blizzard App Path=");
+                        writer.WriteLine("Blizzard App Language=");
                     }
                     if (chkProgramFile.Checked)
                     {

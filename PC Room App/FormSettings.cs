@@ -15,6 +15,13 @@ namespace PC_Room_App
         Dictionary<int, Profile> dictProfiles = new Dictionary<int, Profile>();
         int profileCounter = 0;
         Profile currentProfile = new Profile();
+        List<string> testProgramFile = new List<string> { };
+        string testProfileName = "";
+        bool testPrefProf = false;
+        string testWoWPath = "";
+        string testAddonPath = "";
+        string testBlizzAppPath = "";
+        string testBlizzAppLang = "";
 
         public FormSettings()
         {
@@ -24,17 +31,13 @@ namespace PC_Room_App
         #region On Form load
         private void LoadProfile()
         {
+            //need to reset for reload
+            profileCounter = 0;
+            dictProfiles.Clear();
+
             string cachePath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\Cache.txt";
             string[] readText = File.ReadAllLines(cachePath);
-
-            string testProfileName = "";
-            bool testPrefProf = false;
-            string testWoWPath = "";
-            string testAddonPath = "";
-            string testBlizzAppPath = "";
-            string testBlizzAppLang = "";
-            List <string> testProgramFile = new List<string> { };
-
+            
             foreach (string lines in readText)
             {
                 //read the cache file, split the strings for testing where they are
@@ -63,7 +66,7 @@ namespace PC_Room_App
                         case "Blizzard App Language":
                             testBlizzAppLang = splitString[1];
                             break;
-                        case "ProgramFiles":
+                        case "Program Files":
                             testProgramFile.Add(splitString[1]);
                             break;
                     }
@@ -77,13 +80,21 @@ namespace PC_Room_App
                         WoWAddonsPath = testAddonPath,
                         BlizzAppPath = testBlizzAppPath,
                         BlizzAppLanguage = testBlizzAppLang,
-                        ProgramFiles = testProgramFile
+                        ProgramFiles = testProgramFile.ToArray()
                     });
                     if (dictProfiles[profileCounter].PreferredProfile)
                     {
                         currentProfile = dictProfiles[profileCounter];
                         openProfile.Text = "Current Profile: " + dictProfiles[profileCounter].ProfileName;
                     }
+                    //needed to clear testProgramFile for sure, just clearing the rest anyway
+                    testProfileName = "";
+                    testPrefProf = false;
+                    testWoWPath = "";
+                    testAddonPath = "";
+                    testBlizzAppPath = "";
+                    testBlizzAppLang = "";
+                    testProgramFile.Clear();
                     profileCounter++;
                 }
             }
@@ -96,8 +107,7 @@ namespace PC_Room_App
             List<ToolStripMenuItem> listItems = new List<ToolStripMenuItem>();
             for (i = 0; i < profileCounter; i++)
             {
-                ToolStripMenuItem item = new ToolStripMenuItem();
-                item = new ToolStripMenuItem()
+                ToolStripMenuItem item = new ToolStripMenuItem()
                 {
                     Name = "profile" + i.ToString(),
                     Text = dictProfiles[i].ProfileName,
@@ -107,6 +117,7 @@ namespace PC_Room_App
                 listItems.Add(item);
             }
             ToolStripMenuItem[] stringItems = listItems.ToArray();
+            openProfile.DropDownItems.Clear();
             openProfile.DropDownItems.AddRange(stringItems);
         }
 
@@ -120,7 +131,7 @@ namespace PC_Room_App
             openProfile.Text = "Current Profile: " + currentProfile.ProfileName;
         }
 
-        private void Settings_Load(object sender, EventArgs e)
+        private void RefreshForm()
         {
             bool existingProfile = File.Exists(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\Cache.txt");
             if (existingProfile)
@@ -138,7 +149,11 @@ namespace PC_Room_App
                 }
                 Show();
             }
-            
+        }
+
+        private void Settings_Load(object sender, EventArgs e)
+        {
+            RefreshForm();
         }
         #endregion
 
@@ -179,10 +194,10 @@ namespace PC_Room_App
 
         private void BtnChangeSettings_Click(object sender, EventArgs e)
         {
-            //taken from visualbasic because it's so good
-            //if you wanted to give people the option of overriding or not through windows use UIOption.AllDialogs instead of true
-            if (!(currentProfile.WoWPath == "") && !(currentProfile.WoWAddonsPath ==""))
+            if (string.IsNullOrEmpty(currentProfile.WoWPath) == false && string.IsNullOrEmpty(currentProfile.WoWAddonsPath) == false)
             {
+                //taken from visualbasic because it's so good
+                //if you wanted to give people the option of overriding or not through windows use UIOption.AllDialogs instead of true
                 FileSystem.CopyDirectory(currentProfile.WoWAddonsPath, currentProfile.WoWPath, true);
                 //TODO: look into fading in and out(timers)
                 lblConfirmation.Text = "Addons -> WoW" + Environment.NewLine + "Files have been copied";
@@ -195,11 +210,11 @@ namespace PC_Room_App
             {
                 LaunchBattleNetApp();
             }
-            if (!(currentProfile.ProgramFiles.Count == 0))
+            if (!(currentProfile.ProgramFiles.Length == 0))
             {
                 try
                 {
-                    for (int i = 0; i < currentProfile.ProgramFiles.Count; i++)
+                    for (int i = 0; i < currentProfile.ProgramFiles.Length; i++)
                     {
                         using (Process exeProcess = Process.Start(currentProfile.ProgramFiles[i]))
                         {
@@ -238,6 +253,7 @@ namespace PC_Room_App
                 formCreateProfile.ShowDialog();
             }
             Show();
+            RefreshForm();
         }
 
         private void FAQToolStripMenuItem_Click(object sender, EventArgs e)

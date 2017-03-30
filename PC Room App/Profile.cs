@@ -15,6 +15,6 @@ namespace PC_Room_App
         public string BlizzAppPath { get; set; }
         public string BlizzAppServer { get; set; }
         public string BlizzAppLanguage { get; set; }
-        public List <string> ProgramFiles { get; set; }
+        public string[] ProgramFiles { get; set; }
     }
 }
