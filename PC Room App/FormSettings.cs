@@ -33,6 +33,7 @@ namespace PC_Room_App
             string testAddonPath = "";
             string testBlizzAppPath = "";
             string testBlizzAppLang = "";
+            List <string> testProgramFile = new List<string> { };
 
             foreach (string lines in readText)
             {
@@ -62,22 +63,26 @@ namespace PC_Room_App
                         case "Blizzard App Language":
                             testBlizzAppLang = splitString[1];
                             break;
+                        case "ProgramFiles":
+                            testProgramFile.Add(splitString[1]);
+                            break;
                     }
                 }
                 else
                 {
                     dictProfiles.Add(profileCounter, new Profile {
-                        profileName = testProfileName,
-                        preferredProfile = testPrefProf,
+                        ProfileName = testProfileName,
+                        PreferredProfile = testPrefProf,
                         WoWPath = testWoWPath,
                         WoWAddonsPath = testAddonPath,
                         BlizzAppPath = testBlizzAppPath,
-                        BlizzAppLanguage = testBlizzAppLang
+                        BlizzAppLanguage = testBlizzAppLang,
+                        ProgramFiles = testProgramFile
                     });
-                    if (dictProfiles[profileCounter].preferredProfile)
+                    if (dictProfiles[profileCounter].PreferredProfile)
                     {
                         currentProfile = dictProfiles[profileCounter];
-                        openProfile.Text = "Current Profile: " + dictProfiles[profileCounter].profileName;
+                        openProfile.Text = "Current Profile: " + dictProfiles[profileCounter].ProfileName;
                     }
                     profileCounter++;
                 }
@@ -95,7 +100,7 @@ namespace PC_Room_App
                 item = new ToolStripMenuItem()
                 {
                     Name = "profile" + i.ToString(),
-                    Text = dictProfiles[i].profileName,
+                    Text = dictProfiles[i].ProfileName,
                     Tag = i
                 };
                 item.Click += new EventHandler(MenuItemClickHandler);
@@ -112,7 +117,7 @@ namespace PC_Room_App
             ToolStripMenuItem clickedItem = (ToolStripMenuItem)sender;
             int currentProfileNumber = Convert.ToInt32(clickedItem.Tag);
             currentProfile = dictProfiles[currentProfileNumber];
-            openProfile.Text = "Current Profile: " + currentProfile.profileName;
+            openProfile.Text = "Current Profile: " + currentProfile.ProfileName;
         }
 
         private void Settings_Load(object sender, EventArgs e)
@@ -176,32 +181,53 @@ namespace PC_Room_App
         {
             //taken from visualbasic because it's so good
             //if you wanted to give people the option of overriding or not through windows use UIOption.AllDialogs instead of true
-            FileSystem.CopyDirectory(currentProfile.WoWAddonsPath, currentProfile.WoWPath, true);
-
-            //TODO: look into fading in and out(timers)
-            lblConfirmation.Text = "Addons -> WoW" + Environment.NewLine + "Files have been copied";
-            lblConfirmation.Visible = true;
-
+            if (!(currentProfile.WoWPath == "") && !(currentProfile.WoWAddonsPath ==""))
+            {
+                FileSystem.CopyDirectory(currentProfile.WoWAddonsPath, currentProfile.WoWPath, true);
+                //TODO: look into fading in and out(timers)
+                lblConfirmation.Text = "Addons -> WoW" + Environment.NewLine + "Files have been copied";
+                lblConfirmation.Visible = true;
+            }
+            
             //only launch it if blizz app is not open already
             Process[] blizzApp = Process.GetProcessesByName("battle.net");
             if (blizzApp.Length == 0)
             {
                 LaunchBattleNetApp();
             }
+            if (!(currentProfile.ProgramFiles.Count == 0))
+            {
+                try
+                {
+                    for (int i = 0; i < currentProfile.ProgramFiles.Count; i++)
+                    {
+                        using (Process exeProcess = Process.Start(currentProfile.ProgramFiles[i]))
+                        {
+                            exeProcess.WaitForExit();
+                        }
+                    }
+                }
+                catch
+                {
+                    MessageBox.Show("An error occured when trying to run your exe files.");
+                }
+            }
         }
 
         private void BtnSaveAddons_Click(object sender, EventArgs e)
         {
-            //todo look into centering message box stuff, looks bad atm
-            DialogResult dialogResult = MessageBox.Show("If you did not push the Change Settings button during your session then you may have some issues." + Environment.NewLine + "A backup of your addons is recommended",
-                "Are you sure want to override your Addons? ", MessageBoxButtons.YesNo);
-            if (dialogResult == DialogResult.Yes)
+            if (!(currentProfile.WoWPath == "") && !(currentProfile.WoWAddonsPath == ""))
             {
+                //todo look into centering message box stuff, looks bad atm
+                DialogResult dialogResult = MessageBox.Show("If you did not push the Change Settings button during your session then you may have some issues." + Environment.NewLine + "A backup of your addons is recommended",
+                "Are you sure want to override your Addons? ", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
                     FileSystem.CopyDirectory(currentProfile.WoWPath, currentProfile.WoWAddonsPath, true);
                     lblConfirmation.Text = "WoW -> Addons" + Environment.NewLine + "Files have been copied";
                     lblConfirmation.Visible = true;
-            }
-            
+                }
+            }  
         }
 
         private void NewProfile_Click(object sender, EventArgs e)

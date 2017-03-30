@@ -51,14 +51,22 @@
             this.label5 = new System.Windows.Forms.Label();
             this.lblShowError = new System.Windows.Forms.Label();
             this.chkPrefProf = new System.Windows.Forms.CheckBox();
+            this.grpboxProgram = new System.Windows.Forms.GroupBox();
+            this.btnBrowseProgramFile = new System.Windows.Forms.Button();
+            this.txtProgramFileLocation = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.chkProgramFile = new System.Windows.Forms.CheckBox();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.label7 = new System.Windows.Forms.Label();
             this.grpboxWOW.SuspendLayout();
             this.grpboxBlizzApp.SuspendLayout();
+            this.grpboxProgram.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(30, 25);
+            this.label1.Location = new System.Drawing.Point(69, 25);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(103, 20);
             this.label1.TabIndex = 0;
@@ -84,7 +92,7 @@
             // 
             // txtProfileName
             // 
-            this.txtProfileName.Location = new System.Drawing.Point(273, 25);
+            this.txtProfileName.Location = new System.Drawing.Point(312, 25);
             this.txtProfileName.Name = "txtProfileName";
             this.txtProfileName.Size = new System.Drawing.Size(279, 26);
             this.txtProfileName.TabIndex = 3;
@@ -109,7 +117,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(29, 398);
+            this.btnSave.Location = new System.Drawing.Point(73, 447);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(174, 86);
             this.btnSave.TabIndex = 6;
@@ -119,7 +127,7 @@
             // 
             // btnExit
             // 
-            this.btnExit.Location = new System.Drawing.Point(373, 397);
+            this.btnExit.Location = new System.Drawing.Point(417, 446);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(174, 86);
             this.btnExit.TabIndex = 7;
@@ -152,7 +160,7 @@
             // chkWOW
             // 
             this.chkWOW.AutoSize = true;
-            this.chkWOW.Location = new System.Drawing.Point(273, 63);
+            this.chkWOW.Location = new System.Drawing.Point(192, 62);
             this.chkWOW.Name = "chkWOW";
             this.chkWOW.Size = new System.Drawing.Size(159, 24);
             this.chkWOW.TabIndex = 10;
@@ -163,7 +171,7 @@
             // chkBlizzApp
             // 
             this.chkBlizzApp.AutoSize = true;
-            this.chkBlizzApp.Location = new System.Drawing.Point(442, 63);
+            this.chkBlizzApp.Location = new System.Drawing.Point(357, 62);
             this.chkBlizzApp.Name = "chkBlizzApp";
             this.chkBlizzApp.Size = new System.Drawing.Size(124, 24);
             this.chkBlizzApp.TabIndex = 11;
@@ -179,7 +187,7 @@
             this.grpboxWOW.Controls.Add(this.label2);
             this.grpboxWOW.Controls.Add(this.txtWoWPath);
             this.grpboxWOW.Controls.Add(this.btnBrowseWoW);
-            this.grpboxWOW.Location = new System.Drawing.Point(11, 91);
+            this.grpboxWOW.Location = new System.Drawing.Point(50, 91);
             this.grpboxWOW.Name = "grpboxWOW";
             this.grpboxWOW.Size = new System.Drawing.Size(575, 100);
             this.grpboxWOW.TabIndex = 12;
@@ -223,7 +231,7 @@
             this.grpboxBlizzApp.Controls.Add(this.btnBrowseBlizzApp);
             this.grpboxBlizzApp.Controls.Add(this.txtBlizzAppPath);
             this.grpboxBlizzApp.Controls.Add(this.label3);
-            this.grpboxBlizzApp.Location = new System.Drawing.Point(12, 197);
+            this.grpboxBlizzApp.Location = new System.Drawing.Point(51, 197);
             this.grpboxBlizzApp.Name = "grpboxBlizzApp";
             this.grpboxBlizzApp.Size = new System.Drawing.Size(575, 97);
             this.grpboxBlizzApp.TabIndex = 13;
@@ -255,7 +263,7 @@
             // 
             this.lblShowError.AutoSize = true;
             this.lblShowError.ForeColor = System.Drawing.Color.Red;
-            this.lblShowError.Location = new System.Drawing.Point(171, 306);
+            this.lblShowError.Location = new System.Drawing.Point(188, 380);
             this.lblShowError.Name = "lblShowError";
             this.lblShowError.Size = new System.Drawing.Size(261, 20);
             this.lblShowError.TabIndex = 15;
@@ -265,18 +273,91 @@
             // chkPrefProf
             // 
             this.chkPrefProf.AutoSize = true;
-            this.chkPrefProf.Location = new System.Drawing.Point(34, 61);
+            this.chkPrefProf.Location = new System.Drawing.Point(33, 62);
             this.chkPrefProf.Name = "chkPrefProf";
             this.chkPrefProf.Size = new System.Drawing.Size(149, 24);
             this.chkPrefProf.TabIndex = 16;
             this.chkPrefProf.Text = "Preferred Profile";
             this.chkPrefProf.UseVisualStyleBackColor = true;
             // 
-            // formCreateNewProfile
+            // grpboxProgram
+            // 
+            this.grpboxProgram.Controls.Add(this.label7);
+            this.grpboxProgram.Controls.Add(this.btnBrowseProgramFile);
+            this.grpboxProgram.Controls.Add(this.txtProgramFileLocation);
+            this.grpboxProgram.Controls.Add(this.label6);
+            this.grpboxProgram.Location = new System.Drawing.Point(51, 296);
+            this.grpboxProgram.Name = "grpboxProgram";
+            this.grpboxProgram.Size = new System.Drawing.Size(575, 81);
+            this.grpboxProgram.TabIndex = 17;
+            this.grpboxProgram.TabStop = false;
+            this.grpboxProgram.Text = "Programs to Run";
+            this.grpboxProgram.Visible = false;
+            // 
+            // btnBrowseProgramFile
+            // 
+            this.btnBrowseProgramFile.Location = new System.Drawing.Point(524, 26);
+            this.btnBrowseProgramFile.Name = "btnBrowseProgramFile";
+            this.btnBrowseProgramFile.Size = new System.Drawing.Size(41, 35);
+            this.btnBrowseProgramFile.TabIndex = 10;
+            this.btnBrowseProgramFile.Text = "...";
+            this.btnBrowseProgramFile.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnBrowseProgramFile.UseVisualStyleBackColor = true;
+            this.btnBrowseProgramFile.Click += new System.EventHandler(this.BtnBrowseProgramFile_Click);
+            // 
+            // txtProgramFileLocation
+            // 
+            this.txtProgramFileLocation.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.txtProgramFileLocation.Location = new System.Drawing.Point(238, 22);
+            this.txtProgramFileLocation.Multiline = true;
+            this.txtProgramFileLocation.Name = "txtProgramFileLocation";
+            this.txtProgramFileLocation.ReadOnly = true;
+            this.txtProgramFileLocation.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtProgramFileLocation.Size = new System.Drawing.Size(280, 42);
+            this.txtProgramFileLocation.TabIndex = 5;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(46, 22);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(171, 20);
+            this.label6.TabIndex = 0;
+            this.label6.Text = "Program File Location: ";
+            // 
+            // chkProgramFile
+            // 
+            this.chkProgramFile.AutoSize = true;
+            this.chkProgramFile.Location = new System.Drawing.Point(488, 62);
+            this.chkProgramFile.Name = "chkProgramFile";
+            this.chkProgramFile.Size = new System.Drawing.Size(155, 24);
+            this.chkProgramFile.TabIndex = 18;
+            this.chkProgramFile.Text = "Programs to Run";
+            this.chkProgramFile.UseVisualStyleBackColor = true;
+            this.chkProgramFile.CheckedChanged += new System.EventHandler(this.ChkProgramFile_CheckedChanged);
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.Color.DarkBlue;
+            this.label7.Location = new System.Drawing.Point(44, 49);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(165, 15);
+            this.label7.TabIndex = 11;
+            this.label7.Text = "**Can Select More Than One";
+            // 
+            // FormNewProfile
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(588, 497);
+            this.ClientSize = new System.Drawing.Size(678, 544);
+            this.Controls.Add(this.chkProgramFile);
+            this.Controls.Add(this.grpboxProgram);
             this.Controls.Add(this.chkPrefProf);
             this.Controls.Add(this.lblShowError);
             this.Controls.Add(this.grpboxBlizzApp);
@@ -288,9 +369,7 @@
             this.Controls.Add(this.txtProfileName);
             this.Controls.Add(this.label1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximumSize = new System.Drawing.Size(610, 553);
-            this.MinimumSize = new System.Drawing.Size(610, 553);
-            this.Name = "formCreateNewProfile";
+            this.Name = "FormNewProfile";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Create a New Profile";
             this.Load += new System.EventHandler(this.FormNewProfile_Load);
@@ -298,6 +377,8 @@
             this.grpboxWOW.PerformLayout();
             this.grpboxBlizzApp.ResumeLayout(false);
             this.grpboxBlizzApp.PerformLayout();
+            this.grpboxProgram.ResumeLayout(false);
+            this.grpboxProgram.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -327,5 +408,12 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label lblShowError;
         private System.Windows.Forms.CheckBox chkPrefProf;
+        private System.Windows.Forms.GroupBox grpboxProgram;
+        private System.Windows.Forms.Button btnBrowseProgramFile;
+        private System.Windows.Forms.TextBox txtProgramFileLocation;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.CheckBox chkProgramFile;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.Label label7;
     }
 }

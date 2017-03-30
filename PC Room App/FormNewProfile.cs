@@ -8,6 +8,7 @@ namespace PC_Room_App
 {
     public partial class FormNewProfile : Form
     {
+        string[] programFiles = new string[] { };
         #region multiple calls methods
         private void FormChange()
         {
@@ -68,7 +69,7 @@ namespace PC_Room_App
                 lblShowError.Text = "Please fill in a Profille Name";
                 lblShowError.Visible = true;
             }
-            else if (!chkWOW.Checked && !chkBlizzApp.Checked)
+            else if (!chkWOW.Checked && !chkBlizzApp.Checked && !chkProgramFile.Checked)
             {
                 //because what's the point of just saving a profile with only a name
                 lblShowError.Text = "Please check at least one checkbox";
@@ -78,14 +79,21 @@ namespace PC_Room_App
             {
                 //error checking if boxes are filled in for WoW
                 //hide the checkbox error since we obviously have a boxed checked
-                lblShowError.Text = "Please fill in every textbox for World of Warcraft";
+                lblShowError.Text = "Please fillout everything for World of Warcraft section";
                 lblShowError.Visible = true;
             }
             else if (chkBlizzApp.Checked && (txtBlizzAppPath.Text == "" || cbnBlizzAppLang.Text == ""))
             {
-                //error checking if boxes are filled in for overwatch
+                //error checking if boxes are filled in for blizzard app
                 //hide the checkbox error since we obviously have a boxed checked
-                lblShowError.Text = "Please fill in every textbox for Blizzard App";
+                lblShowError.Text = "Please fillout everything for Blizzard App section";
+                lblShowError.Visible = true;
+            }
+            else if (chkProgramFile.Checked && txtProgramFileLocation.Text == "")
+            {
+                //error checking if boxes are filled in for programs to run
+                //hide the checkbox error since we obviously have a boxed checked
+                lblShowError.Text = "Please select a program";
                 lblShowError.Visible = true;
             }
             #endregion
@@ -152,6 +160,18 @@ namespace PC_Room_App
                         writer.WriteLine("Blizzard App Path= ");
                         writer.WriteLine("Blizzard App Language= ");
                     }
+                    if (chkProgramFile.Checked)
+                    {
+                        for (int i = 0; i < programFiles.Length; i++)
+                        {
+                            writer.WriteLine("Program Files=" + programFiles[i]);
+                        }
+                        
+                    }
+                    else
+                    {
+                        writer.WriteLine("Program Files=");
+                    }
                     writer.WriteLine(";");
                 }
                 FormChange();
@@ -170,6 +190,31 @@ namespace PC_Room_App
         private void BtnBrowseOW_Click(object sender, EventArgs e)
         {
             FolderLocate("Blizz");
+        }
+        private void BtnBrowseProgramFile_Click(object sender, EventArgs e)
+        {
+            openFileDialog1.Filter = "Executables (*.exe)|*.exe|All files (*.*)|*.*";
+            openFileDialog1.FileName = "";
+            openFileDialog1.Multiselect = true;
+            openFileDialog1.Title = "Program File Browser";
+            DialogResult result = openFileDialog1.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                programFiles = openFileDialog1.FileNames;
+                for(int i = 0; i< programFiles.Length; i++)
+                {
+                    string temp = "";
+                    if(i == 0)
+                    {
+                        temp = programFiles[i].Split('\\').Last();
+                    }
+                    else
+                    {
+                        temp = Environment.NewLine + programFiles[i].Split('\\').Last();
+                    }
+                    txtProgramFileLocation.AppendText(temp);
+                }
+            }
         }
         #endregion
 
@@ -194,6 +239,18 @@ namespace PC_Room_App
             else
             {
                 grpboxBlizzApp.Visible = false;
+            }
+        }
+
+        private void ChkProgramFile_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkProgramFile.Checked)
+            {
+                grpboxProgram.Visible = true;
+            }
+            else
+            {
+                grpboxProgram.Visible = false;
             }
         }
 
