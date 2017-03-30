@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using Microsoft.VisualBasic.FileIO;
 using System.Reflection;
 using System.Diagnostics;
+using System.Linq;
 
 namespace PC_Room_App
 {
@@ -125,7 +126,12 @@ namespace PC_Room_App
             else
             {
                 MessageBox.Show("Please Create a Profile", "No Existing Profile.");
-                Application.Run(new FormNewProfile());
+                Hide();
+                using (FormNewProfile formCreateProfile = new FormNewProfile())
+                {
+                    formCreateProfile.ShowDialog();
+                }
+                Show();
             }
             
         }
@@ -200,9 +206,12 @@ namespace PC_Room_App
 
         private void NewProfile_Click(object sender, EventArgs e)
         {
-            FormNewProfile formCreateProfile = new FormNewProfile();
-            formCreateProfile.Show();
             Hide();
+            using (FormNewProfile formCreateProfile = new FormNewProfile())
+            {
+                formCreateProfile.ShowDialog();
+            }
+            Show();
         }
 
         private void FAQToolStripMenuItem_Click(object sender, EventArgs e)

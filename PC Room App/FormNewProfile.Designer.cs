@@ -293,7 +293,6 @@
             this.Name = "formCreateNewProfile";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Create a New Profile";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormNewProfile_FormClosing);
             this.Load += new System.EventHandler(this.FormNewProfile_Load);
             this.grpboxWOW.ResumeLayout(false);
             this.grpboxWOW.PerformLayout();

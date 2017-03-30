@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
 
@@ -10,9 +11,7 @@ namespace PC_Room_App
         #region multiple calls methods
         private void FormChange()
         {
-            FormSettings frmSettings = new FormSettings();
-            frmSettings.Show();
-            Hide();
+            Close();
         }
 
         private void FolderLocate(string location)
@@ -211,11 +210,6 @@ namespace PC_Room_App
                 chkPrefProf.Checked = true;
                 chkPrefProf.Enabled = false;
             }
-        }
-
-        private void FormNewProfile_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            Application.Exit();
         }
     }
 }
