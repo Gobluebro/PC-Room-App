@@ -22,6 +22,8 @@ namespace PC_Room_App
         string testAddonPath = "";
         string testBlizzAppPath = "";
         string testBlizzAppLang = "";
+        DateTime lastMovedAddonsTime = new DateTime();
+        DateTime lastSavedTime = new DateTime();
 
         public FormSettings()
         {
@@ -148,6 +150,8 @@ namespace PC_Room_App
                     formCreateProfile.ShowDialog();
                 }
                 Show();
+                LoadProfile();
+                AddProfilesToMenu();
             }
         }
 
@@ -202,6 +206,7 @@ namespace PC_Room_App
                 //TODO: look into fading in and out(timers)
                 lblConfirmation.Text = "Addons -> WoW" + Environment.NewLine + "Files have been copied";
                 lblConfirmation.Visible = true;
+                lastMovedAddonsTime = DateTime.Now;
             }
             
             //only launch it if blizz app is not open already
@@ -212,37 +217,51 @@ namespace PC_Room_App
             }
             if (!(currentProfile.ProgramFiles.Length == 0))
             {
-                try
+                for (int i = 0; i < currentProfile.ProgramFiles.Length; i++)
                 {
-                    for (int i = 0; i < currentProfile.ProgramFiles.Length; i++)
+                    try
                     {
                         using (Process exeProcess = Process.Start(currentProfile.ProgramFiles[i]))
                         {
                             exeProcess.WaitForExit();
                         }
                     }
-                }
-                catch
-                {
-                    MessageBox.Show("An error occured when trying to run your exe files.");
+                    catch
+                    {
+                        MessageBox.Show("An error occured when trying to run " + currentProfile.ProgramFiles[i].Split('\\').Last() + ".");
+                    }
                 }
             }
         }
 
         private void BtnSaveAddons_Click(object sender, EventArgs e)
         {
-            if (!(currentProfile.WoWPath == "") && !(currentProfile.WoWAddonsPath == ""))
+            if (string.IsNullOrEmpty(currentProfile.WoWPath) == false && string.IsNullOrEmpty(currentProfile.WoWAddonsPath) == false)
             {
-                //todo look into centering message box stuff, looks bad atm
-                DialogResult dialogResult = MessageBox.Show("If you did not push the Change Settings button during your session then you may have some issues." + Environment.NewLine + "A backup of your addons is recommended",
-                "Are you sure want to override your Addons? ", MessageBoxButtons.YesNo);
-                if (dialogResult == DialogResult.Yes)
+                try
                 {
-                    FileSystem.CopyDirectory(currentProfile.WoWPath, currentProfile.WoWAddonsPath, true);
-                    lblConfirmation.Text = "WoW -> Addons" + Environment.NewLine + "Files have been copied";
-                    lblConfirmation.Visible = true;
+                    //have to create my own message box if want better message box formating
+                    DialogResult dialogResult = MessageBox.Show("The last time you saved was " +
+                        File.GetLastWriteTime(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\Cache.txt") + "." +
+                        Environment.NewLine +
+                        "If you did not push the Change Settings button during your session then you may have some issues." +
+                        Environment.NewLine +
+                        "A backup of your addons is recommended",
+                    "Are you sure want to override your Addons? ", MessageBoxButtons.YesNo);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        FileSystem.CopyDirectory(currentProfile.WoWPath + @"\WTF", currentProfile.WoWAddonsPath + @"\WTF", true);
+                        FileSystem.CopyDirectory(currentProfile.WoWPath + @"\Interface", currentProfile.WoWAddonsPath + @"\Interface", true);
+                        lblConfirmation.Text = "WoW -> Addons" + Environment.NewLine + "Files have been copied";
+                        lblConfirmation.Visible = true;
+                    }
                 }
-            }  
+                catch 
+                {
+                    MessageBox.Show("WoW folder was set improperly", "Error when trasfering", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                
+            }
         }
 
         private void NewProfile_Click(object sender, EventArgs e)
@@ -278,6 +297,7 @@ namespace PC_Room_App
 
         private void FormSettings_FormClosing(object sender, FormClosingEventArgs e)
         {
+            //save the lastMovedAddonTime
             Application.Exit();
         }
     }
