@@ -99,6 +99,7 @@ namespace PC_Room_App
             #endregion
             else
             {
+                string temp = "";
                 lblShowError.Visible = false;
                 
                 //check if cache exists, then in the cache look if I have a prefferred profile
@@ -126,10 +127,19 @@ namespace PC_Room_App
                     }
                 }
 
+                if (!(CacheExists()))
+                {
+                    temp = "Last Moved Time=";
+                }
+
                 //the opens the cache file and the bool allows me to append to the file (false would be to overwrite)
                 //in the case of the first time creates the file, in the case of the second time it appends (thank you whoever wrote this nice constructor)
                 using (StreamWriter writer = new StreamWriter("Cache.txt",true))
                 {
+                    if (!(string.IsNullOrEmpty(temp)))
+                    {
+                        writer.WriteLine(temp);
+                    }
                     writer.WriteLine("Profile Name=" + txtProfileName.Text);
                     if (chkPrefProf.Checked)
                     {

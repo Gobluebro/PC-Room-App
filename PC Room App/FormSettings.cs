@@ -22,8 +22,7 @@ namespace PC_Room_App
         string testAddonPath = "";
         string testBlizzAppPath = "";
         string testBlizzAppLang = "";
-        DateTime lastMovedAddonsTime = new DateTime();
-        DateTime lastSavedTime = new DateTime();
+        string lastMovedAddonsTime = "";
 
         public FormSettings()
         {
@@ -49,6 +48,9 @@ namespace PC_Room_App
 
                     switch (splitString[0])
                     {
+                        case "Last Moved Time":
+                            lastMovedAddonsTime = splitString[1];
+                            break;
                         case "Profile Name":
                             testProfileName = splitString[1];
                             break;
@@ -206,7 +208,7 @@ namespace PC_Room_App
                 //TODO: look into fading in and out(timers)
                 lblConfirmation.Text = "Addons -> WoW" + Environment.NewLine + "Files have been copied";
                 lblConfirmation.Visible = true;
-                lastMovedAddonsTime = DateTime.Now;
+                lastMovedAddonsTime = DateTime.Now.ToString();
             }
             
             //only launch it if blizz app is not open already
@@ -215,7 +217,7 @@ namespace PC_Room_App
             {
                 LaunchBattleNetApp();
             }
-            if (!(currentProfile.ProgramFiles.Length == 0))
+            if (!(currentProfile.ProgramFiles[0] == ""))
             {
                 for (int i = 0; i < currentProfile.ProgramFiles.Length; i++)
                 {
@@ -236,13 +238,13 @@ namespace PC_Room_App
 
         private void BtnSaveAddons_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(currentProfile.WoWPath) == false && string.IsNullOrEmpty(currentProfile.WoWAddonsPath) == false)
+            if (string.IsNullOrEmpty(currentProfile.WoWPath) == false && string.IsNullOrEmpty(currentProfile.WoWAddonsPath) == false && string.IsNullOrEmpty(lastMovedAddonsTime) == false)
             {
                 try
                 {
                     //have to create my own message box if want better message box formating
                     DialogResult dialogResult = MessageBox.Show("The last time you saved was " +
-                        File.GetLastWriteTime(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\Cache.txt") + "." +
+                        lastMovedAddonsTime + "." +
                         Environment.NewLine +
                         "If you did not push the Change Settings button during your session then you may have some issues." +
                         Environment.NewLine +
@@ -258,7 +260,7 @@ namespace PC_Room_App
                 }
                 catch 
                 {
-                    MessageBox.Show("WoW folder was set improperly", "Error when trasfering", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("WoW folder was set improperly or Addons were never moved", "Error when trasfering", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 
             }
@@ -297,7 +299,25 @@ namespace PC_Room_App
 
         private void FormSettings_FormClosing(object sender, FormClosingEventArgs e)
         {
-            //save the lastMovedAddonTime
+            if (File.Exists("Cache.txt"))
+            {
+                string[] lines = File.ReadAllLines("Cache.txt");
+                using (StreamWriter replacer = new StreamWriter("Cache.txt"))
+                {
+                    for (int i = 0; i < lines.Length; i++)
+                    {
+                        if (i == 0)
+                        {
+                            lines[0] = "Last Moved Time=" + lastMovedAddonsTime.ToString();
+                            replacer.WriteLine(lines[0]);
+                        }
+                        else
+                        {
+                            replacer.WriteLine(lines[i]);
+                        }
+                    }
+                }
+            }
             Application.Exit();
         }
     }
