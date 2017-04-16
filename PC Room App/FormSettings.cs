@@ -193,7 +193,7 @@ namespace PC_Room_App
             {
                 CreateNoWindow = true,
                 UseShellExecute = false,
-                FileName = @"C:\Program Files (x86)\Battle.net\Battle.net.exe",
+                FileName = currentProfile.BlizzAppPath + @"\Battle.net.exe",
                 WindowStyle = ProcessWindowStyle.Normal,
                 Arguments = args
             };
@@ -209,6 +209,8 @@ namespace PC_Room_App
 
         private void BtnChangeSettings_Click(object sender, EventArgs e)
         {
+            //TODO look up background worker and progress bar
+
             if (!(string.IsNullOrEmpty(currentProfile.ProfileName)))
             {
                 if (string.IsNullOrEmpty(currentProfile.WoWPath) == false && string.IsNullOrEmpty(currentProfile.WoWAddonsPath) == false)
