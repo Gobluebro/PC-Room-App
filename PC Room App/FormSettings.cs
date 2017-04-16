@@ -32,75 +32,84 @@ namespace PC_Room_App
         #region On Form load
         private void LoadProfile()
         {
+            
             //need to reset for reload
             profileCounter = 0;
             dictProfiles.Clear();
 
             string cachePath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\Cache.txt";
-            string[] readText = File.ReadAllLines(cachePath);
-            
-            foreach (string lines in readText)
+            if (File.Exists(cachePath))
             {
-                //read the cache file, split the strings for testing where they are
-                if (lines != ";")
-                {
-                    string[] splitString = lines.Split('=');
+                string[] readText = File.ReadAllLines(cachePath);
 
-                    switch (splitString[0])
-                    {
-                        case "Last Moved Time":
-                            lastMovedAddonsTime = splitString[1];
-                            break;
-                        case "Profile Name":
-                            testProfileName = splitString[1];
-                            break;
-                        case "Preferred Profile":
-                            int testBinBool = Int32.Parse(splitString[1]);
-                            testPrefProf = testBinBool == 1 ? true : false;
-                            break;
-                        case "WoW Path":
-                            testWoWPath = splitString[1];
-                            break;
-                        case "WoW Addons Path":
-                            testAddonPath = splitString[1];
-                            break;
-                        case "Blizzard App Path":
-                            testBlizzAppPath = splitString[1];
-                            break;
-                        case "Blizzard App Language":
-                            testBlizzAppLang = splitString[1];
-                            break;
-                        case "Program Files":
-                            testProgramFile.Add(splitString[1]);
-                            break;
-                    }
-                }
-                else
+                foreach (string lines in readText)
                 {
-                    dictProfiles.Add(profileCounter, new Profile {
-                        ProfileName = testProfileName,
-                        PreferredProfile = testPrefProf,
-                        WoWPath = testWoWPath,
-                        WoWAddonsPath = testAddonPath,
-                        BlizzAppPath = testBlizzAppPath,
-                        BlizzAppLanguage = testBlizzAppLang,
-                        ProgramFiles = testProgramFile.ToArray()
-                    });
-                    if (dictProfiles[profileCounter].PreferredProfile)
+                    //read the cache file, split the strings for testing where they are
+                    if (lines != ";")
                     {
-                        currentProfile = dictProfiles[profileCounter];
-                        openProfile.Text = "Current Profile: " + dictProfiles[profileCounter].ProfileName;
+                        string[] splitString = lines.Split('=');
+
+                        switch (splitString[0])
+                        {
+                            case "Last Moved Time":
+                                lastMovedAddonsTime = splitString[1];
+                                break;
+                            case "Profile Name":
+                                testProfileName = splitString[1];
+                                break;
+                            case "Preferred Profile":
+                                int testBinBool = Int32.Parse(splitString[1]);
+                                testPrefProf = testBinBool == 1 ? true : false;
+                                break;
+                            case "WoW Path":
+                                testWoWPath = splitString[1];
+                                break;
+                            case "WoW Addons Path":
+                                testAddonPath = splitString[1];
+                                break;
+                            case "Blizzard App Path":
+                                testBlizzAppPath = splitString[1];
+                                break;
+                            case "Blizzard App Language":
+                                testBlizzAppLang = splitString[1];
+                                break;
+                            case "Program Files":
+                                testProgramFile.Add(splitString[1]);
+                                break;
+                        }
                     }
-                    //needed to clear testProgramFile for sure, just clearing the rest anyway
-                    testProfileName = "";
-                    testPrefProf = false;
-                    testWoWPath = "";
-                    testAddonPath = "";
-                    testBlizzAppPath = "";
-                    testBlizzAppLang = "";
-                    testProgramFile.Clear();
-                    profileCounter++;
+                    else
+                    {
+                        dictProfiles.Add(profileCounter, new Profile
+                        {
+                            ProfileName = testProfileName,
+                            PreferredProfile = testPrefProf,
+                            WoWPath = testWoWPath,
+                            WoWAddonsPath = testAddonPath,
+                            BlizzAppPath = testBlizzAppPath,
+                            BlizzAppLanguage = testBlizzAppLang,
+                            ProgramFiles = testProgramFile.ToArray()
+                        });
+                        if (dictProfiles[profileCounter].PreferredProfile)
+                        {
+                            currentProfile = dictProfiles[profileCounter];
+                            openProfile.Text = "Current Profile: " + dictProfiles[profileCounter].ProfileName;
+                        }
+                        //needed to clear testProgramFile for sure, just clearing the rest anyway
+                        testProfileName = "";
+                        testPrefProf = false;
+                        testWoWPath = "";
+                        testAddonPath = "";
+                        testBlizzAppPath = "";
+                        testBlizzAppLang = "";
+                        testProgramFile.Clear();
+                        profileCounter++;
+                    }
                 }
+            }
+            else
+            {
+                MessageBox.Show("Cache doesn't exist", "File Not Found");
             }
         }
 
@@ -200,69 +209,82 @@ namespace PC_Room_App
 
         private void BtnChangeSettings_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(currentProfile.WoWPath) == false && string.IsNullOrEmpty(currentProfile.WoWAddonsPath) == false)
+            if (!(string.IsNullOrEmpty(currentProfile.ProfileName)))
             {
-                //taken from visualbasic because it's so good
-                //if you wanted to give people the option of overriding or not through windows use UIOption.AllDialogs instead of true
-                FileSystem.CopyDirectory(currentProfile.WoWAddonsPath, currentProfile.WoWPath, true);
-                //TODO: look into fading in and out(timers)
-                lblConfirmation.Text = "Addons -> WoW" + Environment.NewLine + "Files have been copied";
-                lblConfirmation.Visible = true;
-                lastMovedAddonsTime = DateTime.Now.ToString();
-            }
-            
-            //only launch it if blizz app is not open already
-            Process[] blizzApp = Process.GetProcessesByName("battle.net");
-            if (blizzApp.Length == 0)
-            {
-                LaunchBattleNetApp();
-            }
-            if (!(currentProfile.ProgramFiles[0] == ""))
-            {
-                for (int i = 0; i < currentProfile.ProgramFiles.Length; i++)
+                if (string.IsNullOrEmpty(currentProfile.WoWPath) == false && string.IsNullOrEmpty(currentProfile.WoWAddonsPath) == false)
                 {
-                    try
+                    //taken from visualbasic because it's so good
+                    //if you wanted to give people the option of overriding or not through windows use UIOption.AllDialogs instead of true
+                    FileSystem.CopyDirectory(currentProfile.WoWAddonsPath, currentProfile.WoWPath, true);
+                    //TODO: look into fading in and out(timers)
+                    lblConfirmation.Text = "Addons -> WoW" + Environment.NewLine + "Files have been copied";
+                    lblConfirmation.Visible = true;
+                    lastMovedAddonsTime = DateTime.Now.ToString();
+                }
+
+                //only launch it if blizz app is not open already
+                Process[] blizzApp = Process.GetProcessesByName("battle.net");
+                if (blizzApp.Length == 0)
+                {
+                    LaunchBattleNetApp();
+                }
+                if (!(currentProfile.ProgramFiles[0] == ""))
+                {
+                    for (int i = 0; i < currentProfile.ProgramFiles.Length; i++)
                     {
-                        using (Process exeProcess = Process.Start(currentProfile.ProgramFiles[i]))
+                        try
                         {
-                            exeProcess.WaitForExit();
+                            using (Process exeProcess = Process.Start(currentProfile.ProgramFiles[i]))
+                            {
+                                exeProcess.WaitForExit();
+                            }
+                        }
+                        catch
+                        {
+                            MessageBox.Show("An error occured when trying to run " + currentProfile.ProgramFiles[i].Split('\\').Last() + ".");
                         }
                     }
-                    catch
-                    {
-                        MessageBox.Show("An error occured when trying to run " + currentProfile.ProgramFiles[i].Split('\\').Last() + ".");
-                    }
                 }
+            }
+            else
+            {
+                MessageBox.Show("No Profile is currently selected", "No Profile Error");
             }
         }
 
         private void BtnSaveAddons_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(currentProfile.WoWPath) == false && string.IsNullOrEmpty(currentProfile.WoWAddonsPath) == false && string.IsNullOrEmpty(lastMovedAddonsTime) == false)
+            if (!(string.IsNullOrEmpty(currentProfile.ProfileName)))
             {
-                try
+                if (string.IsNullOrEmpty(currentProfile.WoWPath) == false && string.IsNullOrEmpty(currentProfile.WoWAddonsPath) == false && string.IsNullOrEmpty(lastMovedAddonsTime) == false)
                 {
-                    //have to create my own message box if want better message box formating
-                    DialogResult dialogResult = MessageBox.Show("The last time you saved was " +
-                        lastMovedAddonsTime + "." +
-                        Environment.NewLine +
-                        "If you did not push the Change Settings button during your session then you may have some issues." +
-                        Environment.NewLine +
-                        "A backup of your addons is recommended",
-                    "Are you sure want to override your Addons? ", MessageBoxButtons.YesNo);
-                    if (dialogResult == DialogResult.Yes)
+                    try
                     {
-                        FileSystem.CopyDirectory(currentProfile.WoWPath + @"\WTF", currentProfile.WoWAddonsPath + @"\WTF", true);
-                        FileSystem.CopyDirectory(currentProfile.WoWPath + @"\Interface", currentProfile.WoWAddonsPath + @"\Interface", true);
-                        lblConfirmation.Text = "WoW -> Addons" + Environment.NewLine + "Files have been copied";
-                        lblConfirmation.Visible = true;
+                        //have to create my own message box if want better message box formating
+                        DialogResult dialogResult = MessageBox.Show("The last time you saved was " +
+                            lastMovedAddonsTime + "." +
+                            Environment.NewLine +
+                            "If you did not push the Change Settings button during your session then you may have some issues." +
+                            Environment.NewLine +
+                            "A backup of your addons is recommended",
+                        "Are you sure want to override your Addons? ", MessageBoxButtons.YesNo);
+                        if (dialogResult == DialogResult.Yes)
+                        {
+                            FileSystem.CopyDirectory(currentProfile.WoWPath + @"\WTF", currentProfile.WoWAddonsPath + @"\WTF", true);
+                            FileSystem.CopyDirectory(currentProfile.WoWPath + @"\Interface", currentProfile.WoWAddonsPath + @"\Interface", true);
+                            lblConfirmation.Text = "WoW -> Addons" + Environment.NewLine + "Files have been copied";
+                            lblConfirmation.Visible = true;
+                        }
+                    }
+                    catch
+                    {
+                        MessageBox.Show("WoW folder was set improperly or Addons were never moved", "Error when trasfering", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
-                catch 
-                {
-                    MessageBox.Show("WoW folder was set improperly or Addons were never moved", "Error when trasfering", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                
+            }
+            else
+            {
+                MessageBox.Show("No Profile is currently selected", "No Profile Error");
             }
         }
 
