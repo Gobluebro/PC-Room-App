@@ -91,13 +91,15 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(397, 369);
+            this.ClientSize = new System.Drawing.Size(414, 380);
             this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximumSize = new System.Drawing.Size(436, 436);
+            this.MinimumSize = new System.Drawing.Size(436, 436);
             this.Name = "FormAboutDev";
             this.Text = "About the Developer";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

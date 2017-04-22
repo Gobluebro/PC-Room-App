@@ -42,6 +42,9 @@
             this.lblConfirmation = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.btnSaveAddons = new System.Windows.Forms.Button();
+            this.backgroundWorkerAddonsToWoW = new System.ComponentModel.BackgroundWorker();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.backgroundWorkerWoWToAddons = new System.ComponentModel.BackgroundWorker();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -70,20 +73,20 @@
             // newProfile
             // 
             this.newProfile.Name = "newProfile";
-            this.newProfile.Size = new System.Drawing.Size(211, 30);
+            this.newProfile.Size = new System.Drawing.Size(141, 30);
             this.newProfile.Text = "New";
             this.newProfile.Click += new System.EventHandler(this.NewProfile_Click);
             // 
             // editToolStripMenuItem
             // 
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(211, 30);
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(141, 30);
             this.editToolStripMenuItem.Text = "Edit";
             // 
             // openProfile
             // 
             this.openProfile.Name = "openProfile";
-            this.openProfile.Size = new System.Drawing.Size(211, 30);
+            this.openProfile.Size = new System.Drawing.Size(141, 30);
             this.openProfile.Text = "Open";
             // 
             // helpToolStripMenuItem
@@ -122,7 +125,7 @@
             // lblConfirmation
             // 
             this.lblConfirmation.AutoSize = true;
-            this.lblConfirmation.Location = new System.Drawing.Point(208, 328);
+            this.lblConfirmation.Location = new System.Drawing.Point(208, 348);
             this.lblConfirmation.Name = "lblConfirmation";
             this.lblConfirmation.Size = new System.Drawing.Size(171, 20);
             this.lblConfirmation.TabIndex = 4;
@@ -151,12 +154,33 @@
             this.btnSaveAddons.UseVisualStyleBackColor = true;
             this.btnSaveAddons.Click += new System.EventHandler(this.BtnSaveAddons_Click);
             // 
+            // backgroundWorkerAddonsToWoW
+            // 
+            this.backgroundWorkerAddonsToWoW.DoWork += new System.ComponentModel.DoWorkEventHandler(this.BackgroundWorkerAddonsToWoW_DoWork);
+            this.backgroundWorkerAddonsToWoW.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.BackgroundWorkerAddonsToWoW_RunWorkerCompleted);
+            // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(212, 310);
+            this.progressBar1.MarqueeAnimationSpeed = 25;
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(167, 26);
+            this.progressBar1.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
+            this.progressBar1.TabIndex = 8;
+            this.progressBar1.Visible = false;
+            // 
+            // backgroundWorkerWoWToAddons
+            // 
+            this.backgroundWorkerWoWToAddons.DoWork += new System.ComponentModel.DoWorkEventHandler(this.BackgroundWorkerWoWToAddons_DoWork);
+            this.backgroundWorkerWoWToAddons.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.BackgroundWorkerWoWToAddons_RunWorkerCompleted);
+            // 
             // FormSettings
             // 
             this.AcceptButton = this.btnChangeSettings;
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(578, 444);
+            this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.btnSaveAddons);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lblConfirmation);
@@ -193,6 +217,9 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnSaveAddons;
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
+        private System.ComponentModel.BackgroundWorker backgroundWorkerAddonsToWoW;
+        private System.Windows.Forms.ProgressBar progressBar1;
+        private System.ComponentModel.BackgroundWorker backgroundWorkerWoWToAddons;
     }
 }
 

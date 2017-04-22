@@ -1,11 +1,11 @@
-﻿using System;
+﻿using Microsoft.VisualBasic.FileIO;
+using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Windows.Forms;
-using Microsoft.VisualBasic.FileIO;
-using System.Reflection;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
+using System.Reflection;
+using System.Windows.Forms;
 
 namespace PC_Room_App
 {
@@ -172,6 +172,7 @@ namespace PC_Room_App
         }
         #endregion
 
+        #region ChangeSettings
         private void LaunchBattleNetApp()
         {
             string args = "";
@@ -215,19 +216,17 @@ namespace PC_Room_App
             {
                 if (string.IsNullOrEmpty(currentProfile.WoWPath) == false && string.IsNullOrEmpty(currentProfile.WoWAddonsPath) == false)
                 {
-                    //taken from visualbasic because it's so good
-                    //if you wanted to give people the option of overriding or not through windows use UIOption.AllDialogs instead of true
-                    FileSystem.CopyDirectory(currentProfile.WoWAddonsPath, currentProfile.WoWPath, true);
-                    //TODO: look into fading in and out(timers)
-                    lblConfirmation.Text = "Addons -> WoW" + Environment.NewLine + "Files have been copied";
+                    lblConfirmation.Text = "Addons -> WoW";
                     lblConfirmation.Visible = true;
+                    progressBar1.Visible = true;
+                    backgroundWorkerAddonsToWoW.RunWorkerAsync();
                     lastMovedAddonsTime = DateTime.Now.ToString();
                 }
 
                 //only launch it if blizz app is not open already
                 Process[] blizzApp = Process.GetProcessesByName("battle.net");
-                if (blizzApp.Length == 0)
-                {
+                if (blizzApp.Length == 0 && (!(string.IsNullOrEmpty(currentProfile.BlizzAppPath))))
+                { 
                     LaunchBattleNetApp();
                 }
                 if (!(currentProfile.ProgramFiles[0] == ""))
@@ -254,6 +253,22 @@ namespace PC_Room_App
             }
         }
 
+        private void BackgroundWorkerAddonsToWoW_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+        {
+            //taken from visualbasic because it's so good
+            //if you wanted to give people the option of overriding or not through windows use UIOption.AllDialogs instead of true
+            FileSystem.CopyDirectory(currentProfile.WoWAddonsPath, currentProfile.WoWPath, true);
+        }
+
+        private void BackgroundWorkerAddonsToWoW_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
+        {
+            progressBar1.Visible = false;
+            //TODO: look into fading in and out(timers)
+            lblConfirmation.Text = "Addons -> WoW" + Environment.NewLine + "Files have been copied";
+        }
+        #endregion
+
+        #region SaveAddons
         private void BtnSaveAddons_Click(object sender, EventArgs e)
         {
             if (!(string.IsNullOrEmpty(currentProfile.ProfileName)))
@@ -272,10 +287,10 @@ namespace PC_Room_App
                         "Are you sure want to override your Addons? ", MessageBoxButtons.YesNo);
                         if (dialogResult == DialogResult.Yes)
                         {
-                            FileSystem.CopyDirectory(currentProfile.WoWPath + @"\WTF", currentProfile.WoWAddonsPath + @"\WTF", true);
-                            FileSystem.CopyDirectory(currentProfile.WoWPath + @"\Interface", currentProfile.WoWAddonsPath + @"\Interface", true);
-                            lblConfirmation.Text = "WoW -> Addons" + Environment.NewLine + "Files have been copied";
+                            lblConfirmation.Text = "WoW -> Addons";
                             lblConfirmation.Visible = true;
+                            progressBar1.Visible = true;
+                            backgroundWorkerWoWToAddons.RunWorkerAsync();
                         }
                     }
                     catch
@@ -289,6 +304,19 @@ namespace PC_Room_App
                 MessageBox.Show("No Profile is currently selected", "No Profile Error");
             }
         }
+
+        private void BackgroundWorkerWoWToAddons_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+        {
+            FileSystem.CopyDirectory(currentProfile.WoWPath + @"\WTF", currentProfile.WoWAddonsPath + @"\WTF", true);
+            FileSystem.CopyDirectory(currentProfile.WoWPath + @"\Interface", currentProfile.WoWAddonsPath + @"\Interface", true);
+        }
+
+        private void BackgroundWorkerWoWToAddons_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
+        {
+            progressBar1.Visible = false;
+            lblConfirmation.Text = "WoW -> Addons" + Environment.NewLine + "Files have been copied";
+        }
+        #endregion
 
         private void NewProfile_Click(object sender, EventArgs e)
         {
