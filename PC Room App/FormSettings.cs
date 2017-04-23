@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -23,6 +24,8 @@ namespace PC_Room_App
         string testBlizzAppPath = "";
         string testBlizzAppLang = "";
         string lastMovedAddonsTime = "";
+        int second = 0;
+        int toTransparent = 0;
 
         public FormSettings()
         {
@@ -216,6 +219,14 @@ namespace PC_Room_App
             {
                 if (string.IsNullOrEmpty(currentProfile.WoWPath) == false && string.IsNullOrEmpty(currentProfile.WoWAddonsPath) == false)
                 {
+                    if (timer1.Enabled == true)
+                    {
+                        TimerReset(1);
+                    }
+                    if (timer2.Enabled == true)
+                    {
+                        TimerReset(2);
+                    }
                     lblConfirmation.Text = "Addons -> WoW";
                     lblConfirmation.Visible = true;
                     progressBar1.Visible = true;
@@ -263,8 +274,23 @@ namespace PC_Room_App
         private void BackgroundWorkerAddonsToWoW_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
         {
             progressBar1.Visible = false;
-            //TODO: look into fading in and out(timers)
+            lblConfirmation.Visible = true;
             lblConfirmation.Text = "Addons -> WoW" + Environment.NewLine + "Files have been copied";
+            timer1.Start();
+        }
+
+        private void Timer1_Tick(object sender, EventArgs e)
+        {
+            second = second + 1;
+            if (second >= 8 && second <= 9)
+            {
+                toTransparent = toTransparent + 90;
+                lblConfirmation.ForeColor = Color.FromArgb(toTransparent, toTransparent, toTransparent);
+            }
+            if (second >= 10)
+            {
+                TimerReset(1);
+            }
         }
         #endregion
 
@@ -275,6 +301,14 @@ namespace PC_Room_App
             {
                 if (string.IsNullOrEmpty(currentProfile.WoWPath) == false && string.IsNullOrEmpty(currentProfile.WoWAddonsPath) == false && string.IsNullOrEmpty(lastMovedAddonsTime) == false)
                 {
+                    if (timer1.Enabled == true)
+                    {
+                        TimerReset(1);
+                    }
+                    if (timer2.Enabled == true)
+                    {
+                        TimerReset(2);
+                    }
                     try
                     {
                         //have to create my own message box if want better message box formating
@@ -314,9 +348,41 @@ namespace PC_Room_App
         private void BackgroundWorkerWoWToAddons_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
         {
             progressBar1.Visible = false;
+            lblConfirmation.Visible = true;
             lblConfirmation.Text = "WoW -> Addons" + Environment.NewLine + "Files have been copied";
+            timer2.Start();
+        }
+
+        private void Timer2_Tick(object sender, EventArgs e)
+        {
+            second = second + 1;
+            if (second >= 8 && second <= 9)
+            {
+                toTransparent = toTransparent + 90;
+                lblConfirmation.ForeColor = Color.FromArgb(toTransparent, toTransparent, toTransparent);
+            }            
+            if (second >= 10)
+            {
+                TimerReset(2);
+            }
         }
         #endregion
+
+        private void TimerReset (int timer)
+        {
+            lblConfirmation.Visible = false;
+            second = 0;
+            toTransparent = 0;
+            lblConfirmation.ForeColor = Color.FromArgb(toTransparent, SystemColors.ControlText);
+            if (timer == 1)
+            {
+                timer1.Stop();
+            }
+            else if (timer == 2)
+            {
+                timer2.Stop();
+            } 
+        }
 
         private void NewProfile_Click(object sender, EventArgs e)
         {
@@ -372,5 +438,7 @@ namespace PC_Room_App
             }
             Application.Exit();
         }
+
+        
     }
 }
